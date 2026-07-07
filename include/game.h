@@ -2,17 +2,17 @@
  * FILENAME :		game.h
  * 
  * DESCRIPTION :
- * 		Contains game specific offsets and structures for Deadlocked.
+ * 		Contains game specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GAME_H_
-#define _LIBDLSP_GAME_H_
+#ifndef _LIBRAC4_GAME_H_
+#define _LIBRAC4_GAME_H_
 
 #include <tamtypes.h>
 #include "moby.h"
@@ -102,7 +102,7 @@ typedef struct ScoreboardItem
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int isInGame(void);
+__LIBRAC4_GETTER__ int isInGame(void);
 
 /*
  * NAME :		isInMenus
@@ -118,7 +118,7 @@ __LIBDLSP_GETTER__ int isInGame(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int isInMenus(void);
+__LIBRAC4_GETTER__ int isInMenus(void);
 
 /*
  * NAME :		isSceneLoading
@@ -134,7 +134,7 @@ __LIBDLSP_GETTER__ int isInMenus(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int isSceneLoading(void);
+__LIBRAC4_GETTER__ int isSceneLoading(void);
 
 /*
  * NAME :		gameIsStartMenuOpen
@@ -150,7 +150,7 @@ __LIBDLSP_GETTER__ int isSceneLoading(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int gameIsStartMenuOpen(void);
+__LIBRAC4_GETTER__ int gameIsStartMenuOpen(void);
 
 
 /*
@@ -167,7 +167,7 @@ __LIBDLSP_GETTER__ int gameIsStartMenuOpen(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int gameHasEnded(void);
+__LIBRAC4_GETTER__ int gameHasEnded(void);
 
 /*
  * NAME :		gameGetTime
@@ -183,7 +183,7 @@ __LIBDLSP_GETTER__ int gameHasEnded(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int gameGetTime(void);
+__LIBRAC4_GETTER__ int gameGetTime(void);
 
 /*
  * NAME :		gameGetFinishedExitTime
@@ -200,7 +200,7 @@ __LIBDLSP_GETTER__ int gameGetTime(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int gameGetFinishedExitTime(void);
+__LIBRAC4_GETTER__ int gameGetFinishedExitTime(void);
 
 /*
  * NAME :		gameGetDeathHeight
@@ -216,7 +216,7 @@ __LIBDLSP_GETTER__ int gameGetFinishedExitTime(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ float gameGetDeathHeight(void);
+__LIBRAC4_GETTER__ float gameGetDeathHeight(void);
 
 /*
  * NAME :		gameSetDeathHeight
@@ -232,7 +232,7 @@ __LIBDLSP_GETTER__ float gameGetDeathHeight(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void gameSetDeathHeight(float height);
+__LIBRAC4_SETTER__ void gameSetDeathHeight(float height);
 
 /*
  * NAME :		gameGetRawTimeLimit
@@ -248,7 +248,7 @@ __LIBDLSP_SETTER__ void gameSetDeathHeight(float height);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int gameGetRawTimeLimit(void);
+__LIBRAC4_GETTER__ int gameGetRawTimeLimit(void);
 
 /*
  * NAME :		gameScoreboardSetTeamScore
@@ -266,6 +266,6 @@ void gameScoreboardSetTeamScore(int teamId, int score);
  * 			Returns the current dme world id. -1 if not in a world.
  * 
  */
-__LIBDLSP_GETTER__ int gameGetWorldId(void);
+__LIBRAC4_GETTER__ int gameGetWorldId(void);
 
-#endif // _LIBDLSP_GAME_H_
+#endif // _LIBRAC4_GAME_H_

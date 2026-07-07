@@ -1,0 +1,6 @@
+EE_LIB_NAME = librac4ntsck.a
+EE_DEFS = -DRAC4_NTSCK -DRAC_NTSCK -DNTSCK -DRAC4_V100 -DRAC_V100 -DRAC4_NTSCK_V100 -DRAC_NTSCK_V100
+
+include ${CURDIR}/Makefile.defs
+include $(PS2SDK)/samples/Makefile.pref
+include ${CURDIR}/Makefile.eeglobal

@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_MC_H_
-#define _LIBDLSP_MC_H_
+#ifndef _LIBRAC4_MC_H_
+#define _LIBRAC4_MC_H_
 
 #include "common.h"
 
@@ -18,6 +18,6 @@ int McSeek(int fd, int offset, int origin);
 int McRead(int fd, void *buffer, int size);
 int McWrite(int fd, const void *buffer, int size);
 int McPollSema(void);
-__LIBDLSP_GETTER__ int McGetResult(void);
+__LIBRAC4_GETTER__ int McGetResult(void);
 
-#endif // _LIBDLSP_MC_H_
+#endif // _LIBRAC4_MC_H_

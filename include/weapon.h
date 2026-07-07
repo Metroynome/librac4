@@ -2,17 +2,17 @@
  * FILENAME :		weapon.h
  * 
  * DESCRIPTION :
- * 		Contains weapon specific offsets and structures for Deadlocked.
+ * 		Contains weapon specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_WEAPON_H_
-#define _LIBDLSP_WEAPON_H_
+#ifndef _LIBRAC4_WEAPON_H_
+#define _LIBRAC4_WEAPON_H_
 
 #include "common.h"
 #include "math3d.h"
@@ -348,4 +348,4 @@ void weaponTurnOnHoloshields(int team);
  */
 void weaponTurnOffHoloshields(void);
 
-#endif // _LIBDLSP_WEAPON_H_
+#endif // _LIBRAC4_WEAPON_H_

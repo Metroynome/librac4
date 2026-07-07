@@ -6,13 +6,13 @@
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_TIME_H_
-#define _LIBDLSP_TIME_H_
+#ifndef _LIBRAC4_TIME_H_
+#define _LIBRAC4_TIME_H_
 
 #define TIME_SECOND               (1000)
 #define TIME_MINUTE               (TIME_SECOND * 60)
@@ -34,4 +34,4 @@
  */
 long timerGetSystemTime(void);
 
-#endif // _LIBDLSP_TIME_H_
+#endif // _LIBRAC4_TIME_H_

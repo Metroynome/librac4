@@ -4,7 +4,7 @@ EE_BIN_DIR = bin/
 EE_ELF = $(EE_BIN_DIR)printf.elf
 EE_BIN = $(EE_BIN_DIR)printf.bin
 EE_OBJS = main.o
-EE_LIBS = -ldlsp
+EE_LIBS = -lrac4
 ADDRESS = 000F0000
 
 EE_OBJS := $(EE_OBJS:%=$(EE_OBJS_DIR)%)

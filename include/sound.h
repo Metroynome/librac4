@@ -2,13 +2,13 @@
  * FILENAME :		sound.h
  * 
  * DESCRIPTION :
- * 		Contains sound specific offsets and structures for Deadlocked.
+ * 		Contains sound specific offsets and structures for Ratchet and Clank 4.
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_SOUND_H_
-#define _LIBDLSP_SOUND_H_
+#ifndef _LIBRAC4_SOUND_H_
+#define _LIBRAC4_SOUND_H_
 
 #include "math3d.h"
 #include "common.h"
@@ -155,4 +155,4 @@ short soundKillById(short soundId, Moby* moby);
  */
 SoundData* soundGetData(short soundId);
 
-#endif // _LIBDLSP_SOUND_H_
+#endif // _LIBRAC4_SOUND_H_

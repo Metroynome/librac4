@@ -1,0 +1,6 @@
+EE_LIB_NAME = librac4ntscj.a
+EE_DEFS = -DRAC4_NTSCJ -DRAC_NTSCJ -DNTSCJ -DRAC4_V100 -DRAC_V100 -DRAC4_NTSCJ_V100 -DRAC_NTSCJ_V100
+
+include ${CURDIR}/Makefile.defs
+include $(PS2SDK)/samples/Makefile.pref
+include ${CURDIR}/Makefile.eeglobal

@@ -1,0 +1,3 @@
+RAC4_REGIONS = ntscu pal ntscj ntsck
+RAC4_VERSION = v100
+RAC4_BUILD_TYPE = retail

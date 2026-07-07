@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_UI_H_
-#define _LIBDLSP_UI_H_
+#ifndef _LIBRAC4_UI_H_
+#define _LIBRAC4_UI_H_
 
 #include "common.h"
 
@@ -170,7 +170,7 @@ void uiChangeMenu(enum UiMenuIds menuId);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int uiGetActive(void);
+__LIBRAC4_GETTER__ int uiGetActive(void);
 
 /*
  * NAME :		uiShowYesNoDialog
@@ -382,4 +382,4 @@ UiMenu_t* uiGetActivePointer(void);
  */
 void uiRunCallbacks(void);
 
-#endif // _LIBDLSP_UI_H_
+#endif // _LIBRAC4_UI_H_

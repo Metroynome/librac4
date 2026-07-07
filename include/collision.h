@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_COLLISION_H_
-#define _LIBDLSP_COLLISION_H_
+#ifndef _LIBRAC4_COLLISION_H_
+#define _LIBRAC4_COLLISION_H_
 
 #include <tamtypes.h>
 #include "moby.h"
@@ -45,7 +45,7 @@ int CollMobysSphere_Fix(VECTOR position, u64 hitFlag, Moby * moby, u64 a3, float
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ Moby** CollMobysSphere_Fix_GetHitMobies(void);
+__LIBRAC4_GETTER__ Moby** CollMobysSphere_Fix_GetHitMobies(void);
 
 /*
  * NAME :		CollLine_Fix
@@ -77,7 +77,7 @@ int CollLine_Fix(VECTOR from, VECTOR to, u64 hitFlag, Moby * moby, u64 t0);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ Moby* CollLine_Fix_GetHitMoby(void);
+__LIBRAC4_GETTER__ Moby* CollLine_Fix_GetHitMoby(void);
 
 /*
  * NAME :		CollLine_Fix_GetHitPosition
@@ -93,7 +93,7 @@ __LIBDLSP_GETTER__ Moby* CollLine_Fix_GetHitMoby(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ float* CollLine_Fix_GetHitPosition(void);
+__LIBRAC4_GETTER__ float* CollLine_Fix_GetHitPosition(void);
 
 /*
  * NAME :		CollLine_Fix_GetHitNormal
@@ -109,7 +109,7 @@ __LIBDLSP_GETTER__ float* CollLine_Fix_GetHitPosition(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ float* CollLine_Fix_GetHitNormal(void);
+__LIBRAC4_GETTER__ float* CollLine_Fix_GetHitNormal(void);
 
 /*
  * NAME :		CollLine_Fix_GetHitCollisionId
@@ -125,7 +125,7 @@ __LIBDLSP_GETTER__ float* CollLine_Fix_GetHitNormal(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ u8 CollLine_Fix_GetHitCollisionId(void);
+__LIBRAC4_GETTER__ u8 CollLine_Fix_GetHitCollisionId(void);
 
 
-#endif // _LIBDLSP_COLLISION_H_
+#endif // _LIBRAC4_COLLISION_H_

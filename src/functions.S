@@ -1,5 +1,7 @@
-#define GAME_MAP_ID                         (0x0021DE10)
-#define MISSION_AREA						(0x001711A8)
+#include "types.h"
+
+#define GAME_MAP_ID                         (RAC4_ADDR_GAME_MAP_ID)
+#define MISSION_AREA                        (RAC4_ADDR_MISSION_AREA)
 
 // fixed address function
 #define FUNCTION(name, address) \
@@ -26,7 +28,7 @@ name:	j address;              \
 	.type	name,@function;	    		\
 	.ent	name,0;		        			\
 	.extern variable_address_struct; \
-name:														\
+name:												\
 		addiu $sp, $sp, -0x40;			\
 		sq $ra, 0x00($sp);					\
 		sq $a0, 0x10($sp);					\
@@ -36,40 +38,27 @@ name:														\
 		la $a1, ##name##_return;				\
 		j __LocalGetAddress;        \
 		nop;			            			\
-##name##_return:										\
+##name##_return:									\
+		beq $zero, $v0, ##name##_exit;	\
+		nop;								\
 		lq $a1, 0x20($sp);					\
-		jalr $v1;										\
+		jalr $v0;								\
 		lq $a0, 0x10($sp);					\
-##name##_exit:											\
+##name##_exit:										\
 		lq $ra, 0x00($sp);					\
 		lq $s0, 0x30($sp);					\
-		jr $ra;											\
+		jr $ra;									\
 		addiu $sp, $sp, 0x40;				\
 	.end	name;		        				\
-	.size	name,.-name;	   			 	\
+	.size	name,.-name;	   	 		\
 	.set	pop;
 
-//
 __LocalGetAddress_offsets:
-	// Starting Address: 000F0408 + Offset = Function Pointer
-	// MISSING_00 = -1
-	// BATTLEDOME = +0
-    // CATACROM = +4
-	// MISSING_03 = -1
-    // SARATHOS = +8
-    // KRONOS = +12
-    // SHAAR = +16
-    // VALIX = +20
-	// MISSING_09 = -1
-    // ORXON = +24
-    // TORVAL = +28
-    // STYGIA = +32
-	// MISSING_12 = -1
-    // MARAXUS = +36,
-    // GHOST_STATION = +40,
-    // DREADZONE_INTERIOR = +44
-	// MAIN_MENU = +48 (GAME_MAP_ID = 1, MISSION_AREA = -1)
-	// MULTIPLAYER_MENU = +52 (GAME_MAP_ID = 0, MISSION_AREA = -1)
+	// GAME_MAP_ID to VariableAddress_t byte offset.
+	// Co-op map ids are normalized by subtracting 20 before this lookup.
+	// 1 Battledome, 2 Catacrom, 4 Sarathos, 5 Kronos, 6 Shaar, 7 Valix,
+	// 8 Orxon, 10 Torval, 11 Stygia, 13 Maraxus, 14 Ghost Station,
+	// 15 DreadZone Interior, 16 Main Menu, 17 Multiplayer Menu.
 	.byte -1,0,4,-1,8,12,16,20,24,-1,28,32,-1,36,40,44,48,52;
 
 // 
@@ -81,47 +70,8 @@ __LocalGetAddress_offsets:
 	.type	__LocalGetAddress,@function;
 	.ent	__LocalGetAddress,0;
 __LocalGetAddress:
-	lw $v0, GAME_MAP_ID;
-	addiu $v1, $zero, 2;
-	// if $v0 <= $v1, then you truely are on a map.
-	bge $v0, $v1, __LocalAddress_ByMap;
-	nop
-	// Is map Battledome or on Main Menu?
-	addiu $v1, $zero, 1;
-	beq $v0, $v1, __LocalAddress_ByMission
-	nop;
-
-__LocalAddress_ByMission:
-	// return address by mission
-	lw $v1, MISSION_AREA;
-	// if mission is equal or less than 0, then in menu.
-	blez $v1, __LocalAddress_ByMenu;
-	nop;
-	// else must be battledome!
-	beq $zero, $zero, __LocalAddress_ByMap;
-	nop;
-
-__LocalAddress_ByMenu:
-	// If GAME_MAP_ID doesn't equal zero, load 48 (MainMenu), else load 52 (MultiplayerMenu)
-	bne $v0, $zero, __LocalAddressAdd_byte;
-	addiu $v1, $zero, 48;
-	beq $v0, $zero, __LocalAddressAdd_byte;
-	addiu $v1, $zero, 52;
-
-__LocalAddress_ByMap:
-	// load offset from VariableAddress struct and add it to map id
-	la $v1, __LocalGetAddress_offsets;
-	addu $v1, $v0;
-	lb $v1, 0($v1);
-
-__LocalAddressAdd_byte:
-	// load address from struct
-	addu $a0, $v1;
-	lw $v1, 0($a0);
-
-	// return to calling function
-__LocalGetAddress_exit:
-	jr $a1;
+	or $t9, $a1, $zero;
+	j __ResolveVariableAddress;
 	nop;
 	.end	__LocalGetAddress;
 	.size	__LocalGetAddress,.-__LocalGetAddress;
@@ -136,50 +86,102 @@ __LocalGetAddress_exit:
 	.type	GetAddress,@function;
 	.ent	GetAddress,0;
 GetAddress:
-	lw $v0, GAME_MAP_ID;
-	addiu $v1, $zero, 2;
-	// if $v0 <= $v1, then you truely are on a map.
-	bge $v0, $v1, GetAddress_ByMap;
-	nop
-	// Is map Battledome or on Main Menu?
-	addiu $v1, $zero, 1;
-	beq $v0, $v1, GetAddress_ByMission
-	nop;
-
-GetAddress_ByMission:
-	// return address by mission
-	lw $v1, MISSION_AREA;
-	// if mission is equal or less than 0, then in menu.
-	blez $v1, GetAddress_ByMenu;
-	nop;
-	// else must be battledome!
-	beq $zero, $zero, GetAddress_ByMap;
-	nop;
-
-GetAddress_ByMenu:
-	// If GAME_MAP_ID doesn't equal zero, load 48 (MainMenu), else load 52 (MultiplayerMenu)
-	bne $v0, $zero, __LocalAddressAdd_byte;
-	addiu $v1, $zero, 48;
-	beq $v0, $zero, __LocalAddressAdd_byte;
-	addiu $v1, $zero, 52;
-
-GetAddress_ByMap:
-	// load offset from VariableAddress struct and add it to map id
-	la $v1, __LocalGetAddress_offsets;
-	addu $v1, $v0;
-	lb $v1, 0($v1);
-
-GetAddressAdd_byte:
-	// load address from struct
-	addu $a0, $v1;
-	lw $v1, 0($a0);
-
-	// return to calling function
-GetAddress_exit:
-	jr $ra;
+	or $t9, $ra, $zero;
+	j __ResolveVariableAddress;
 	nop;
 	.end	GetAddress;
 	.size	GetAddress,.-GetAddress;
+	.set	pop;
+
+// 
+	.set	push;
+	.set	noreorder;
+	.section	.text.##GetAddressImmediate,"ax",@progbits;
+	.align 2;
+	.globl	GetAddressImmediate;
+	.type	GetAddressImmediate,@function;
+	.ent	GetAddressImmediate,0;
+GetAddressImmediate:
+	or $t9, $ra, $zero;
+	j __ResolveVariableAddress;
+	nop;
+	.end	GetAddressImmediate;
+	.size	GetAddressImmediate,.-GetAddressImmediate;
+	.set	pop;
+
+// 
+	.set	push;
+	.set	noreorder;
+	.section	.text.##__ResolveVariableAddress,"ax",@progbits;
+	.align 2;
+	.globl	__ResolveVariableAddress;
+	.type	__ResolveVariableAddress,@function;
+	.ent	__ResolveVariableAddress,0;
+__ResolveVariableAddress:
+	lw $v0, GAME_MAP_ID;
+	addiu $v1, $zero, 39;
+	beq $v0, $v1, __ResolveVariableAddress_MultiplayerMenu;
+	nop;
+	addiu $v1, $zero, 2;
+	bge $v0, $v1, __ResolveVariableAddress_ByMap;
+	nop;
+	addiu $v1, $zero, 1;
+	beq $v0, $v1, __ResolveVariableAddress_ByMission;
+	nop;
+	beq $zero, $zero, __ResolveVariableAddress_ByMenu;
+	nop;
+
+__ResolveVariableAddress_ByMission:
+	lw $v1, MISSION_AREA;
+	blez $v1, __ResolveVariableAddress_ByMenu;
+	nop;
+	beq $zero, $zero, __ResolveVariableAddress_ByMap;
+	nop;
+
+__ResolveVariableAddress_ByMenu:
+	bne $v0, $zero, __ResolveVariableAddress_AddByte;
+	addiu $v1, $zero, 48;
+	beq $v0, $zero, __ResolveVariableAddress_AddByte;
+	addiu $v1, $zero, 52;
+
+__ResolveVariableAddress_MultiplayerMenu:
+	beq $zero, $zero, __ResolveVariableAddress_AddByte;
+	addiu $v1, $zero, 52;
+
+__ResolveVariableAddress_ByMap:
+	// Co-op campaign map ids mirror the campaign ids with +20.
+	addiu $v1, $zero, 21;
+	slt $t0, $v0, $v1;
+	bne $t0, $zero, __ResolveVariableAddress_MapNormalized;
+	nop;
+	addiu $v1, $zero, 36;
+	slt $t0, $v0, $v1;
+	beq $t0, $zero, __ResolveVariableAddress_MapNormalized;
+	nop;
+	addiu $v0, $v0, -20;
+
+__ResolveVariableAddress_MapNormalized:
+	sltiu $t0, $v0, 18;
+	beq $t0, $zero, __ResolveVariableAddress_Zero;
+	nop;
+	la $v1, __LocalGetAddress_offsets;
+	addu $v1, $v1, $v0;
+	lb $v1, 0($v1);
+	bltz $v1, __ResolveVariableAddress_Zero;
+	nop;
+
+__ResolveVariableAddress_AddByte:
+	addu $a0, $a0, $v1;
+	lw $v0, 0($a0);
+	jr $t9;
+	nop;
+
+__ResolveVariableAddress_Zero:
+	move $v0, $zero;
+	jr $t9;
+	nop;
+	.end	__ResolveVariableAddress;
+	.size	__ResolveVariableAddress,.-__ResolveVariableAddress;
 	.set	pop;
 
 

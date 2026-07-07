@@ -19,8 +19,8 @@
 # Review ps2sdk README & LICENSE files for further details.
 */
 
-#ifndef _LIBDLSP_MATH3D_H_
-#define _LIBDLSP_MATH3D_H_
+#ifndef _LIBRAC4_MATH3D_H_
+#define _LIBRAC4_MATH3D_H_
 
 #include <tamtypes.h>
 
@@ -66,4 +66,4 @@ void matrix_transpose(MATRIX output, MATRIX input0);
 void matrix_unit(MATRIX output);
 float matrix_determinant(MATRIX input0);
 
-#endif // _LIBDLSP_MATH3D_H_
+#endif // _LIBRAC4_MATH3D_H_

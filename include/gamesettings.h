@@ -2,17 +2,17 @@
  * FILENAME :		gamesettings.h
  * 
  * DESCRIPTION :
- * 		Contains lobby specific offsets and structures for Deadlocked.
+ * 		Contains game settings specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GAMESETTINGS_H_
-#define _LIBDLSP_GAMESETTINGS_H_
+#ifndef _LIBRAC4_GAMESETTINGS_H_
+#define _LIBRAC4_GAMESETTINGS_H_
 
 #include <tamtypes.h>
 #include "common.h"
@@ -26,7 +26,7 @@
  * NAME :		GameSettings
  * 
  * DESCRIPTION :
- * 			Contains the lobby's game settings.
+ * 			Contains the active session game settings.
  * 
  * NOTES :
  * 
@@ -177,7 +177,7 @@ typedef struct GameOptions
             char UNK_38 : 8;
             char FlagReturn : 8;
             char FlagVehicleCarry : 8;
-        } MultiplayerGameFlags;
+        } GameModeFlags;
         char Raw[59];
     } GameFlags;
     union {
@@ -218,11 +218,11 @@ typedef struct GameOptions
  * ARGS : 
  * 
  * RETURN :
- *          Returns NULL if no lobby.
+ *          Returns NULL if no active session.
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ GameSettings * gameGetSettings(void);
+__LIBRAC4_GETTER__ GameSettings * gameGetSettings(void);
 
 /*
  * NAME :		gameGetOptions
@@ -235,10 +235,10 @@ __LIBDLSP_GETTER__ GameSettings * gameGetSettings(void);
  * ARGS : 
  * 
  * RETURN :
- *          Returns NULL if no lobby/game.
+ *          Returns NULL if no active session/game.
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ GameOptions * gameGetOptions(void);
+__LIBRAC4_GETTER__ GameOptions * gameGetOptions(void);
 
-#endif // _LIBDLSP_GAMESETTINGS_H_
+#endif // _LIBRAC4_GAMESETTINGS_H_

@@ -2,8 +2,9 @@
 #include "pad.h"
 #include "game.h"
 #include "player.h"
+#include "types.h"
 
-#define PAD_POINTER                         ((PadButtonStatus**)0x0021DDCC)
+#define PAD_POINTER                         ((PadButtonStatus**)RAC4_ADDR_PAD_POINTER)
 #define P1_PAD                              ((PadButtonStatus*)(0x001EE600 + 0x574))
 #define P2_PAD                              ((PadButtonStatus*)(0x001EFD00 + 0x574))
 #define P3_PAD                              ((PadButtonStatus*)(0x001F1400 + 0x574))
@@ -173,10 +174,10 @@ void padDisableInput(void)
     if (isInGame())
     {
         // no input timer
-        *(u16*)(0x00347AA0 + 0x3BA) = 0x7FFF;
+        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x3BA) = 0x7FFF;
 
         // no cam
-        *(u16*)(0x00347AA0 + 0x402) = 0x7FFF;
+        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x402) = 0x7FFF;
     }
 }
 
@@ -201,9 +202,9 @@ void padEnableInput(void)
     if (isInGame())
     {
         // no input timer
-        *(u16*)(0x00347AA0 + 0x3BA) = 0;
+        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x3BA) = 0;
 
         // no cam
-        *(u16*)(0x00347AA0 + 0x402) = 0;
+        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x402) = 0;
     }
 }

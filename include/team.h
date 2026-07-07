@@ -2,17 +2,17 @@
  * FILENAME :		team.h
  * 
  * DESCRIPTION :
- * 		Contains team specific offsets and structures for Deadlocked.
+ * 		Contains team specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_TEAM_H_
-#define _LIBDLSP_TEAM_H_
+#ifndef _LIBRAC4_TEAM_H_
+#define _LIBRAC4_TEAM_H_
 
 #include <tamtypes.h>
 #include "gamesettings.h"
@@ -37,4 +37,4 @@ enum TEAM_IDS
 
 const u32 TEAM_COLORS[11];
 
-#endif // _LIBDLSP_TEAM_H_
+#endif // _LIBRAC4_TEAM_H_

@@ -5,13 +5,13 @@
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GID_H_
-#define _LIBDLSP_GID_H_
+#ifndef _LIBRAC4_GID_H_
+#define _LIBRAC4_GID_H_
 
 #include <tamtypes.h>
 
@@ -33,4 +33,4 @@ typedef struct
     u32 HostId : 4;
 } Gid;
 
-#endif // _LIBDLSP_GID_H_
+#endif // _LIBRAC4_GID_H_

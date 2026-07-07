@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_UTILS_H_
-#define _LIBDLSP_UTILS_H_
+#ifndef _LIBRAC4_UTILS_H_
+#define _LIBRAC4_UTILS_H_
 
 
 #define HOOK_JAL(dest, function)            (*(u32*)(dest) = 0x0C000000 | ((u32)(function) >> 2))
@@ -87,4 +87,4 @@ int isInIopMemory(void* p);
  */
 int ConvertJALtoAddress(int instruction);
 
-#endif // _LIBDLSP_UTILS_H_
+#endif // _LIBRAC4_UTILS_H_

@@ -2,17 +2,17 @@
  * FILENAME :		vehicle.h
  * 
  * DESCRIPTION :
- * 		Contains vehicle specific offsets and structures for Deadlocked.
+ * 		Contains vehicle specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_VEHICLE_H_
-#define _LIBDLSP_VEHICLE_H_
+#ifndef _LIBRAC4_VEHICLE_H_
+#define _LIBRAC4_VEHICLE_H_
 
 #include "math.h"
 #include "weapon.h"
@@ -213,4 +213,4 @@ void vehicleRemovePlayer(Vehicle * vehicle, struct Player * player);
  */
 void vehicleAddPlayer(Vehicle * vehicle, struct Player * player);
 
-#endif // _LIBDLSP_VEHICLE_H_
+#endif // _LIBRAC4_VEHICLE_H_

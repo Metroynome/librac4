@@ -2,7 +2,7 @@
  * FILENAME :		map.h
  * 
  * DESCRIPTION :
- * 		Contains map specific offsets and structures for Deadlocked.
+ * 		Contains map specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 
@@ -10,8 +10,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_MAP_H_
-#define _LIBDLSP_MAP_H_
+#ifndef _LIBRAC4_MAP_H_
+#define _LIBRAC4_MAP_H_
 
 #include <tamtypes.h>
 
@@ -135,4 +135,4 @@ void mapResetMission(void);
  */
 void mapSwitchToLevel(int Level, int Mission);
 
-#endif // _LIBDLSP_MAP_H_
+#endif // _LIBRAC4_MAP_H_

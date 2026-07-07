@@ -2,17 +2,17 @@
  * FILENAME :		player.h
  * 
  * DESCRIPTION :
- * 		Contains player specific offsets and structures for Deadlocked.
+ * 		Contains player specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_PLAYER_H_
-#define _LIBDLSP_PLAYER_H_
+#ifndef _LIBRAC4_PLAYER_H_
+#define _LIBRAC4_PLAYER_H_
 
 #include "math.h"
 #include "weapon.h"
@@ -751,7 +751,7 @@ typedef struct PlayerVTable
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ Player ** playerGetAll(void);
+__LIBRAC4_GETTER__ Player ** playerGetAll(void);
 
 /*
  * NAME :		playerEquipWeapon
@@ -769,7 +769,7 @@ __LIBDLSP_GETTER__ Player ** playerGetAll(void);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void playerEquipWeapon(Player * player, int weaponId);
+__LIBRAC4_SETTER__ void playerEquipWeapon(Player * player, int weaponId);
 
 /*
  * NAME :		playerSetLocalEquipslot
@@ -787,7 +787,7 @@ __LIBDLSP_SETTER__ void playerEquipWeapon(Player * player, int weaponId);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void playerSetLocalEquipslot(int localPlayerId, int slot, int weaponId);
+__LIBRAC4_SETTER__ void playerSetLocalEquipslot(int localPlayerId, int slot, int weaponId);
 
 /*
  * NAME :		playerGetLocalEquipslot
@@ -805,7 +805,7 @@ __LIBDLSP_SETTER__ void playerSetLocalEquipslot(int localPlayerId, int slot, int
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerGetLocalEquipslot(int localPlayerId, int slot);
+__LIBRAC4_GETTER__ int playerGetLocalEquipslot(int localPlayerId, int slot);
 
 /*
  * NAME :		playerSetTeam
@@ -823,7 +823,7 @@ __LIBDLSP_GETTER__ int playerGetLocalEquipslot(int localPlayerId, int slot);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void playerSetTeam(Player * player, int teamId);
+__LIBRAC4_SETTER__ void playerSetTeam(Player * player, int teamId);
 
 /*
  * NAME :		playerIsLocal
@@ -840,7 +840,7 @@ __LIBDLSP_SETTER__ void playerSetTeam(Player * player, int teamId);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerIsLocal(Player * player);
+__LIBRAC4_GETTER__ int playerIsLocal(Player * player);
 
 /*
  * NAME :		playerIdIsLocal
@@ -857,7 +857,7 @@ __LIBDLSP_GETTER__ int playerIsLocal(Player * player);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerIdIsLocal(int playerId);
+__LIBRAC4_GETTER__ int playerIdIsLocal(int playerId);
 
 /*
  * NAME :		playerGetNumLocals
@@ -874,7 +874,7 @@ __LIBDLSP_GETTER__ int playerIdIsLocal(int playerId);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerGetNumLocals(void);
+__LIBRAC4_GETTER__ int playerGetNumLocals(void);
 
 /*
  * NAME :		playerGiveWeapon
@@ -1006,7 +1006,7 @@ int playerIsDead(Player * player);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void playerSetPosRot(Player * player, VECTOR p, VECTOR r);
+__LIBRAC4_SETTER__ void playerSetPosRot(Player * player, VECTOR p, VECTOR r);
 
 /*
  * NAME :		playerGetSpawnpoint
@@ -1026,7 +1026,7 @@ __LIBDLSP_SETTER__ void playerSetPosRot(Player * player, VECTOR p, VECTOR r);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void playerGetSpawnpoint(Player * player, VECTOR outPos, VECTOR outRot, int isFirst);
+__LIBRAC4_SETTER__ void playerGetSpawnpoint(Player * player, VECTOR outPos, VECTOR outRot, int isFirst);
 
 /*
  * NAME :		playerGetPad
@@ -1043,7 +1043,7 @@ __LIBDLSP_SETTER__ void playerGetSpawnpoint(Player * player, VECTOR outPos, VECT
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ PadButtonStatus * playerGetPad(Player * player);
+__LIBRAC4_GETTER__ PadButtonStatus * playerGetPad(Player * player);
 
 /*
  * NAME :		playerPadGetButton
@@ -1062,7 +1062,7 @@ __LIBDLSP_GETTER__ PadButtonStatus * playerGetPad(Player * player);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerPadGetButton(Player * player, u16 buttonMask);
+__LIBRAC4_GETTER__ int playerPadGetButton(Player * player, u16 buttonMask);
 
 /*
  * NAME :		playerPadGetButtonDown
@@ -1081,7 +1081,7 @@ __LIBDLSP_GETTER__ int playerPadGetButton(Player * player, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerPadGetButtonDown(Player * player, u16 buttonMask);
+__LIBRAC4_GETTER__ int playerPadGetButtonDown(Player * player, u16 buttonMask);
 
 /*
  * NAME :		playerPadGetButtonUp
@@ -1100,7 +1100,7 @@ __LIBDLSP_GETTER__ int playerPadGetButtonDown(Player * player, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int playerPadGetButtonUp(Player * player, u16 buttonMask);
+__LIBRAC4_GETTER__ int playerPadGetButtonUp(Player * player, u16 buttonMask);
 
 /*
  * NAME :		playerGetVTable
@@ -1117,7 +1117,7 @@ __LIBDLSP_GETTER__ int playerPadGetButtonUp(Player * player, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ PlayerVTable* playerGetVTable(Player * player);
+__LIBRAC4_GETTER__ PlayerVTable* playerGetVTable(Player * player);
 
 /*
  * NAME :		playerGetFromUID
@@ -1154,4 +1154,4 @@ Player * playerGetFromUID(int uid);
  */
 Player * playerGetFromSlot(int slot);
 
-#endif // _LIBDLSP_PLAYER_H_
+#endif // _LIBRAC4_PLAYER_H_

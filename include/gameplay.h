@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GAMEPLAY_H_
-#define _LIBDLSP_GAMEPLAY_H_
+#ifndef _LIBRAC4_GAMEPLAY_H_
+#define _LIBRAC4_GAMEPLAY_H_
 
 #include <tamtypes.h>
 
@@ -126,4 +126,4 @@ typedef struct GameplayCuboidHeaderDef
   struct GameplayCuboidDef CuboidInstances[0];
 } GameplayCuboidHeaderDef_t;
 
-#endif // _LIBDLSP_GAMEPLAY_H_
+#endif // _LIBRAC4_GAMEPLAY_H_

@@ -2,11 +2,11 @@
  * FILENAME :		color.h
  * 
  * DESCRIPTION :
- * 		Contains color related function definitions found in Deadlocked.
+ * 		Contains color related function definitions found in Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
@@ -21,8 +21,8 @@
 # Review ps2sdk README & LICENSE files for further details.
 */
 
-#ifndef _LIBDLSP_COLOR_H_
-#define _LIBDLSP_COLOR_H_
+#ifndef _LIBRAC4_COLOR_H_
+#define _LIBRAC4_COLOR_H_
 
 /*
  * NAME :		colorLerp
@@ -43,5 +43,5 @@
  */
 u32 colorLerp(u32 a, u32 b, float t);
 
-#endif // _LIBDLSP_COLOR_H_
+#endif // _LIBRAC4_COLOR_H_
 

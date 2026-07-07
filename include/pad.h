@@ -2,11 +2,11 @@
  * FILENAME :		pad.h
  * 
  * DESCRIPTION :
- * 		Contains pad specific offsets and structures for Deadlocked.
+ * 		Contains pad specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
@@ -21,8 +21,8 @@
 # Review ps2sdk README & LICENSE files for further details.
 */
 
-#ifndef _LIBDLSP_PAD_H
-#define _LIBDLSP_PAD_H
+#ifndef _LIBRAC4_PAD_H
+#define _LIBRAC4_PAD_H
 
 #include <tamtypes.h>
 #include "common.h"
@@ -156,7 +156,7 @@ typedef struct PadHistory
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int padGetButton(int port, u16 buttonMask);
+__LIBRAC4_GETTER__ int padGetButton(int port, u16 buttonMask);
 
 /*
  * NAME :		padGetButtonDown
@@ -175,7 +175,7 @@ __LIBDLSP_GETTER__ int padGetButton(int port, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int padGetButtonDown(int port, u16 buttonMask);
+__LIBRAC4_GETTER__ int padGetButtonDown(int port, u16 buttonMask);
 
 /*
  * NAME :		padGetButtonUp
@@ -194,7 +194,7 @@ __LIBDLSP_GETTER__ int padGetButtonDown(int port, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int padGetButtonUp(int port, u16 buttonMask);
+__LIBRAC4_GETTER__ int padGetButtonUp(int port, u16 buttonMask);
 
 /*
  * NAME :		padResetInput
@@ -211,7 +211,7 @@ __LIBDLSP_GETTER__ int padGetButtonUp(int port, u16 buttonMask);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void padResetInput(int port);
+__LIBRAC4_SETTER__ void padResetInput(int port);
 
 /*
  * NAME :		padDisableInput
@@ -245,4 +245,4 @@ void padDisableInput(void);
  */
 void padEnableInput(void);
 
-#endif // _LIBDLSP_PAD_H
+#endif // _LIBRAC4_PAD_H

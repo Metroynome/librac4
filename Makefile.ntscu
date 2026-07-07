@@ -1,0 +1,6 @@
+EE_LIB_NAME = librac4ntscu.a
+EE_DEFS = -DRAC4_NTSCU -DRAC_NTSCU -DNTSCU -DRAC4_V100 -DRAC_V100 -DRAC4_NTSCU_V100 -DRAC_NTSCU_V100
+
+include ${CURDIR}/Makefile.defs
+include $(PS2SDK)/samples/Makefile.pref
+include ${CURDIR}/Makefile.eeglobal

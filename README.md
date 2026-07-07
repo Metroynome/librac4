@@ -1,13 +1,13 @@
-# libdlsp
-libdlsp is built upon dnawrkshp's "libdl".  Majority credits to him.
+# librac4
+librac4 is built upon dnawrkshp's "libdl".  Majority credits to him.
 
 libdl: https://github.com/Dnawrkshp/libdl
 
-Small C library for developing integrated programs for Ratchet Deadlocked PS2
+Small C library for developing integrated programs for Ratchet and Clank 4 campaign/cooperative PS2
 
 ## Building
 
-Building libdlsp requires an installation of the open source PS2SDK. I recommend using a prebuilt docker image.
+Building librac4 requires an installation of the open source PS2SDK. I recommend using a prebuilt docker image.
 
 ### Grab the latest ps2dev docker image
 
@@ -15,7 +15,7 @@ Building libdlsp requires an installation of the open source PS2SDK. I recommend
 
 ### Clone and enter the repo
 
-```git clone https://github.com/Metroynome/libdlsp.git && cd libdlsp```
+```git clone https://github.com/Metroynome/librac4.git && cd librac4```
 
 ### Launch a new docker container with the current directory mounted
 

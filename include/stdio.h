@@ -7,16 +7,16 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_STDIO_H_
-#define _LIBDLSP_STDIO_H_
+#ifndef _LIBRAC4_STDIO_H_
+#define _LIBRAC4_STDIO_H_
 
 #include "common.h"
 
 
 //--------------------------------------------------------
-__LIBDLSP_INLINE__ int sprintf(char * buffer, const char * format, ...);
-__LIBDLSP_INLINE__ int snprintf(char * buffer, long n, const char * format, ...);
-__LIBDLSP_INLINE__ int printf(const char * format, ...);
+__LIBRAC4_INLINE__ int sprintf(char * buffer, const char * format, ...);
+__LIBRAC4_INLINE__ int snprintf(char * buffer, long n, const char * format, ...);
+__LIBRAC4_INLINE__ int printf(const char * format, ...);
 
 
 //--------------------------------------------------------
@@ -28,4 +28,4 @@ __LIBDLSP_INLINE__ int printf(const char * format, ...);
 #endif
 
 
-#endif // _LIBDLSP_STDIO_H_
+#endif // _LIBRAC4_STDIO_H_

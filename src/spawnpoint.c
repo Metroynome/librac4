@@ -2,21 +2,22 @@
 #include "string.h"
 #include "spawnpoint.h"
 #include "game.h"
+#include "types.h"
 
 /*
  * Player 1's hud.
  */
-#define SPAWNPOINTS		    ((SpawnPoint*)(*(u32*)0x00222820))
+#define SPAWNPOINTS		    ((SpawnPoint*)(*(u32*)RAC4_LEVEL_CODE0(0x46A0)))
 
 /*
  *
  */
-#define SP_COUNT    (*(int*)0x00222824)
+#define SP_COUNT    (*(int*)RAC4_LEVEL_CODE0(0x46A4))
 
 /*
  * Player 2's hud.
  */
-#define SP_HILL_PTR	        (*(u32*)0x00222698)
+#define SP_HILL_PTR	        (*(u32*)RAC4_LEVEL_CODE0(0x4518))
 
 int spawnPointGetCount()
 {

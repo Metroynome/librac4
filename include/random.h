@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_RANDOM_H_
-#define _LIBDLSP_RANDOM_H_
+#ifndef _LIBRAC4_RANDOM_H_
+#define _LIBRAC4_RANDOM_H_
 
 #include <tamtypes.h>
 
@@ -132,4 +132,4 @@ int randRangeInt(int min, int max);
  */
 float randRadian(void);
 
-#endif // _LIBDLSP_RANDOM_H_
+#endif // _LIBRAC4_RANDOM_H_

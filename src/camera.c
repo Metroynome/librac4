@@ -2,8 +2,9 @@
 #include "player.h"
 #include "team.h"
 #include "camera.h"
+#include "types.h"
 
-#define GAME_CAMERA                         ((GameCamera*)0x0022CDC0)
+#define GAME_CAMERA                         ((GameCamera*)RAC4_LEVEL_CODE0(0xEC40))
 
 //--------------------------------------------------------------------------------
 GameCamera* cameraGetGameCamera(int cameraIndex)

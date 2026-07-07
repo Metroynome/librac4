@@ -2,17 +2,17 @@
  * FILENAME :		hud.h
  * 
  * DESCRIPTION :
- * 		Contains hud specific offsets and structures for Deadlocked.
+ * 		Contains hud specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_HUD_H_
-#define _LIBDLSP_HUD_H_
+#ifndef _LIBRAC4_HUD_H_
+#define _LIBRAC4_HUD_H_
 
 #include "common.h"
 #include <tamtypes.h>
@@ -156,6 +156,6 @@ struct HUDWidgetWheelObject
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ PlayerHUDFlags * hudGetPlayerFlags(int localPlayerIndex);
+__LIBRAC4_GETTER__ PlayerHUDFlags * hudGetPlayerFlags(int localPlayerIndex);
 
-#endif // _LIBDLSP_HUD_H_
+#endif // _LIBRAC4_HUD_H_

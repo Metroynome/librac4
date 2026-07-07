@@ -1,8 +1,9 @@
 #include "ui.h"
 #include "player.h"
 #include "utils.h"
+#include "types.h"
 
-#define UI_ACTIVE_ID                            (*(int*)0x003434B8)
+#define UI_ACTIVE_ID                            (*(int*)RAC4_LEVEL_CODE0(0x125338))
 #define UI_DIALOG_A0                            ((void*)0x011C7000)
 
 int internal_uiDialog(void *, const char *, const char *, int, int, int, int);

@@ -2,17 +2,17 @@
  * FILENAME :		guber.h
  * 
  * DESCRIPTION :
- * 		Contains guber specific offsets and structures for Deadlocked.
+ * 		Contains guber specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GUBER_H_
-#define _LIBDLSP_GUBER_H_
+#ifndef _LIBRAC4_GUBER_H_
+#define _LIBRAC4_GUBER_H_
 
 #include <tamtypes.h>
 #include "math3d.h"
@@ -104,7 +104,7 @@ typedef struct GuberEvent
 /*
  * Returns pointer to the first GuberMoby if it exists.
  */
-__LIBDLSP_GETTER__ GuberMoby * guberMobyGetFirst(void);
+__LIBRAC4_GETTER__ GuberMoby * guberMobyGetFirst(void);
 
 Guber * guberGetObjectByUID(u32 uid);
 
@@ -128,4 +128,4 @@ void* masterGet(u32 uid);
 void* masterDelete(void * master);
 void* masterCreate(void * object, u32 a1);
 
-#endif // _LIBDLSP_GUBER_H_
+#endif // _LIBRAC4_GUBER_H_

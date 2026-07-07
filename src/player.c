@@ -2,18 +2,19 @@
 #include "player.h"
 #include "team.h"
 #include "game.h"
+#include "types.h"
 
 void internal_playerSetPosRot(Player *, VECTOR, VECTOR, int, int, int, int, int);
 
 /*
  * 
  */
-#define PLAYER_STRUCT_ARRAY                         ((Player**)0x00344C38)
+#define PLAYER_STRUCT_ARRAY                         ((Player**)RAC4_LEVEL_CODE0(0x126AB8))
 
 /*
  * Local player 1 dme player index.
  */
-#define PLAYER_1_ID                                 (*(u32*)0x0017218C)
+#define PLAYER_1_ID                                 (*(u32*)RAC4_ADDR_PLAYER_1_ID)
 
 /*
  * Local player 2 dme player index.
@@ -23,7 +24,7 @@ void internal_playerSetPosRot(Player *, VECTOR, VECTOR, int, int, int, int, int)
 /*
  *
  */
-#define PLAYER_LOCAL_COUNT                          (*(int*)0x00172174)
+#define PLAYER_LOCAL_COUNT                          (*(int*)RAC4_ADDR_PLAYER_LOCAL_COUNT)
 
 /*
  * Weapon stuff.

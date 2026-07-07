@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_PATCH_H_
-#define _LIBDLSP_PATCH_H_
+#ifndef _LIBRAC4_PATCH_H_
+#define _LIBRAC4_PATCH_H_
 
 /*
  * NAME :		patchSifRpc
@@ -26,5 +26,5 @@
  */
 void patchSifRpc(void);
 
-#endif // _LIBDLSP_PATCH_H_
+#endif // _LIBRAC4_PATCH_H_
 

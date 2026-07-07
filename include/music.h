@@ -2,7 +2,7 @@
  * FILENAME :		music.h
  * 
  * DESCRIPTION :
- * 		Contains music specific offsets and structures for Deadlocked.
+ * 		Contains music specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 
@@ -10,8 +10,8 @@
  * AUTHOR :			Troy "Agent Moose" Pruitt
  */
 
-#ifndef _LIBDLSP_MUSIC_H_
-#define _LIBDLSP_MUSIC_H_
+#ifndef _LIBRAC4_MUSIC_H_
+#define _LIBRAC4_MUSIC_H_
 
 #include <tamtypes.h>
 #include "common.h"
@@ -190,4 +190,4 @@ void musicTransitionTrack(short arg1, short CueTrack, short arg3, short arg4);
  */
 int musicIsLoaded(void);
 
-#endif // _LIBDLSP_MUSIC_H_
+#endif // _LIBRAC4_MUSIC_H_

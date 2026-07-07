@@ -1,0 +1,6 @@
+EE_LIB_NAME = librac4pal.a
+EE_DEFS = -DRAC4_PAL -DRAC_PAL -DPAL -DRAC4_V100 -DRAC_V100 -DRAC4_PAL_V100 -DRAC_PAL_V100
+
+include ${CURDIR}/Makefile.defs
+include $(PS2SDK)/samples/Makefile.pref
+include ${CURDIR}/Makefile.eeglobal

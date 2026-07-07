@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_DL_H_
-#define _LIBDLSP_DL_H_
+#ifndef _LIBRAC4_DL_H_
+#define _LIBRAC4_DL_H_
 
 /*
  * NAME :		dlPreUpdate
@@ -42,4 +42,4 @@ void dlPreUpdate(void);
  */
 void dlPostUpdate(void);
 
-#endif // _LIBDLSP_DL_H_
+#endif // _LIBRAC4_DL_H_

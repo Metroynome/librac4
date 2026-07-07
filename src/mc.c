@@ -1,20 +1,21 @@
 #include "mc.h"
 #include <kernel.h>
 #include "string.h"
+#include "types.h"
 
-#define MC_SEMA                         (*(u32*)0x00167BFC)
+#define MC_SEMA                         (*(u32*)RAC4_ADDR_MC_SEMA)
 #define MC_RESULT                       (*(s32*)0x001AEE40)
 
 //--------------------------------------------------------
 int McPollSema(void)
 {
-    if (*(u32*)0x00171B04 != 0)
+    if (*(u32*)RAC4_ADDR_MC_CALLBACK_READY != 0)
     {
-        if (((int (*)(int,int,int))0x0013A7A0)(1, 0x171AF0, 0x171AF4) != 1)
+        if (((int (*)(int,int,int))RAC4_ADDR_MC_CALLBACK_FUNC)(1, RAC4_ADDR_MC_CALLBACK_ARG0, RAC4_ADDR_MC_CALLBACK_ARG1) != 1)
             return -1;
     }
     
-    return *(int*)0x171AF4;
+    return *(int*)RAC4_ADDR_MC_CALLBACK_ARG1;
 }
 
 //--------------------------------------------------------

@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_CAMERA_H_
-#define _LIBDLSP_CAMERA_H_
+#ifndef _LIBRAC4_CAMERA_H_
+#define _LIBRAC4_CAMERA_H_
 
 #include "moby.h"
 #include "math3d.h"
@@ -235,4 +235,4 @@ typedef struct GameCamera {
 
 GameCamera* cameraGetGameCamera(int cameraIndex);
 
-#endif // _LIBDLSP_CAMERA_H_
+#endif // _LIBRAC4_CAMERA_H_

@@ -2,17 +2,17 @@
  * FILENAME :		cheats.h
  * 
  * DESCRIPTION :
- * 		Contains a miscellaneous collection of cheats for Ratchet: Deadlocked.
+ * 		Contains a miscellaneous collection of cheats for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_CHEATS_H_
-#define _LIBDLSP_CHEATS_H_
+#ifndef _LIBRAC4_CHEATS_H_
+#define _LIBRAC4_CHEATS_H_
 
 #include <tamtypes.h>
 #include "common.h"
@@ -65,7 +65,7 @@ void cheatsApplyMirrorWorld(int isOn);
 /*
  *
  */
-__LIBDLSP_SETTER__ void cheatsApplyColorblindMode(u8 mode);
+__LIBRAC4_SETTER__ void cheatsApplyColorblindMode(u8 mode);
 
 /*
  *
@@ -73,4 +73,4 @@ __LIBDLSP_SETTER__ void cheatsApplyColorblindMode(u8 mode);
 void cheatsApplyWeather(u8 weatherId);
 
 
-#endif // _LIBDLSP_CHEATS_H_
+#endif // _LIBRAC4_CHEATS_H_

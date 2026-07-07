@@ -1,7 +1,8 @@
-#ifndef _LIBDLSP_INTEROP_H_
-#define _LIBDLSP_INTEROP_H_
+#ifndef _LIBRAC4_INTEROP_H_
+#define _LIBRAC4_INTEROP_H_
 
 #include <tamtypes.h>
+#include "types.h"
 
 typedef struct VariableAddress
 {
@@ -41,5 +42,6 @@ typedef union FixedAddress
 } FixedAddress_t;
 
 u32 GetAddress(VariableAddress_t* address);
+u32 GetAddressImmediate(VariableAddress_t* address);
 
-#endif // _LIBDLSP_INTEROP_H_
+#endif // _LIBRAC4_INTEROP_H_

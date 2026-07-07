@@ -2,13 +2,13 @@
  * FILENAME :		spawnpoint.h
  * 
  * DESCRIPTION :
- * 		Contains spawnpoint specific offsets and structures for Deadlocked.
+ * 		Contains spawnpoint specific offsets and structures for Ratchet and Clank 4.
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_SPAWNPOINT_H_
-#define _LIBDLSP_SPAWNPOINT_H_
+#ifndef _LIBRAC4_SPAWNPOINT_H_
+#define _LIBRAC4_SPAWNPOINT_H_
 
 #include "math3d.h"
 #include "common.h"
@@ -44,7 +44,7 @@ typedef struct SpawnPoint
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int spawnPointGetCount();
+__LIBRAC4_GETTER__ int spawnPointGetCount();
 
 /*
  * NAME :		hillPointGetCount
@@ -60,7 +60,7 @@ __LIBDLSP_GETTER__ int spawnPointGetCount();
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ short hillPointGetCount();
+__LIBRAC4_GETTER__ short hillPointGetCount();
 
 /*
  * NAME :		hillPointSetCount
@@ -76,7 +76,7 @@ __LIBDLSP_GETTER__ short hillPointGetCount();
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void hillPointSetCount(short count);
+__LIBRAC4_SETTER__ void hillPointSetCount(short count);
 
 /*
  * NAME :		hillPointGetIndex
@@ -92,7 +92,7 @@ __LIBDLSP_SETTER__ void hillPointSetCount(short count);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ int hillPointGetIndex(int id);
+__LIBRAC4_GETTER__ int hillPointGetIndex(int id);
 
 /*
  * NAME :		hillPointSetIndex
@@ -108,7 +108,7 @@ __LIBDLSP_GETTER__ int hillPointGetIndex(int id);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void hillPointSetIndex(int id, int value);
+__LIBRAC4_SETTER__ void hillPointSetIndex(int id, int value);
 
 /*
  * NAME :		spawnPointGet
@@ -124,7 +124,7 @@ __LIBDLSP_SETTER__ void hillPointSetIndex(int id, int value);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_GETTER__ SpawnPoint * spawnPointGet(int index);
+__LIBRAC4_GETTER__ SpawnPoint * spawnPointGet(int index);
 
 /*
  * NAME :		spawnPointSet
@@ -140,6 +140,6 @@ __LIBDLSP_GETTER__ SpawnPoint * spawnPointGet(int index);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-__LIBDLSP_SETTER__ void spawnPointSet(SpawnPoint * sp, int index);
+__LIBRAC4_SETTER__ void spawnPointSet(SpawnPoint * sp, int index);
 
-#endif // _LIBDLSP_SPAWNPOINT_H_
+#endif // _LIBRAC4_SPAWNPOINT_H_

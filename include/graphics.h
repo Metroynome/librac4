@@ -7,8 +7,8 @@
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_GRAPHICS_H_
-#define _LIBDLSP_GRAPHICS_H_
+#ifndef _LIBRAC4_GRAPHICS_H_
+#define _LIBRAC4_GRAPHICS_H_
 
 #include <tamtypes.h>
 #include "math3d.h"
@@ -24,4 +24,4 @@ int internal_widthFunc_MultiplayerMenu(const char * string, int length, float sc
 int internal_drawFunc_MainMenu(u32 color, const char * string, int length, int alignment, float x, float y, float scaleX, float scaleY);
 int internal_widthFunc_MainMenu(const char * string, int length, float scale);
 
-#endif // _LIBDLSP_GRAPHICS_H_
+#endif // _LIBRAC4_GRAPHICS_H_

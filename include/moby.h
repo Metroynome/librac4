@@ -2,17 +2,17 @@
  * FILENAME :		moby.h
  * 
  * DESCRIPTION :
- * 		Contains moby specific offsets and structures for Deadlocked.
+ * 		Contains moby specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
  * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Deadlocked/Gladiator.
+ * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
  * 		
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 
-#ifndef _LIBDLSP_MOBY_H_
-#define _LIBDLSP_MOBY_H_
+#ifndef _LIBRAC4_MOBY_H_
+#define _LIBRAC4_MOBY_H_
 
 #include <tamtypes.h>
 #include "math3d.h"
@@ -696,22 +696,22 @@ Moby * mobySpawn(int id, int propSize);
 /*
  * Returns pointer to the start of the moby list.
  */
-__LIBDLSP_GETTER__ Moby * mobyListGetStart(void);
+__LIBRAC4_GETTER__ Moby * mobyListGetStart(void);
 
 /*
  * Returns pointer to the end of the moby list.
  */
-__LIBDLSP_GETTER__ Moby * mobyListGetEnd(void);
+__LIBRAC4_GETTER__ Moby * mobyListGetEnd(void);
 
 /*
  *
  */
-__LIBDLSP_GETTER__ u16 * mobyGetLoadedMobyClassList(void);
+__LIBRAC4_GETTER__ u16 * mobyGetLoadedMobyClassList(void);
 
 /*
  * Returns non-zero if the given moby is destroyed.
  */
-__LIBDLSP_GETTER__ int mobyIsDestroyed(Moby* moby);
+__LIBRAC4_GETTER__ int mobyIsDestroyed(Moby* moby);
 
 /*
  * Returns a pointer to the next living moby of the given oclass.
@@ -851,4 +851,4 @@ int flagIsAtBase(Moby* flagMoby);
 void flagReturnToBase(Moby* flagMoby, int a0, char returnedByPlayerIdx);
 void flagPickup(Moby* flagMoby, int playerIdx);
 
-#endif // _LIBDLSP_MOBY_H_
+#endif // _LIBRAC4_MOBY_H_
