@@ -280,6 +280,7 @@ FUNCTION(mobyGetFunctions, 0x0051F358) # Not Ported
 FUNCTION(mobySetState, 0x00502250) # Not Ported
 FUNCTION(mobyGetDamage, 0x00504248) # Not Ported
 FUNCTION(mobyPlaySound, 0x0058f6d0) # Not Ported
+FUNCTION(mobyPlaySoundByClass, 0x0058f778) # Not Ported
 FUNCTION(mobyBlowCorn, 0x0050e318) # Not Ported
 FUNCTION(mobyAnimTransition, 0x00502030) # Not Ported
 FUNCTION(mobyCollDamageDirect, 0x00503408) # Not Ported
@@ -296,6 +297,10 @@ FUNCTION(mobyStand, 0x00516a70) # Not Ported
 FUNCTION(mobyStartFlash, 0x00506960) # Not Ported
 FUNCTION(mobyUpdateFlash, 0x00506b88) # Not Ported
 FUNCTION(mobyGetJointMatrix, 0x004f8150) # Not Ported
+FUNCTION(mobySpawnExplosion, 0x003c3b38) # Not Ported
+FUNCTION(mobySpawnSplash, 0x0042e9f0) # Not Ported
+FUNCTION(mobySpawnMinibombs, 0x0040a8c0) # Not Ported
+FUNCTION(mobyGetTargetVars, 0x00506068) # Not Ported
 
 #--------------------------------------------------------
 #------------------------ PLAYER ------------------------

@@ -1,14 +1,14 @@
 /***************************************************
- * FILENAME :		moby.h
+ * FILENAME :    moby.h
  * 
  * DESCRIPTION :
- * 		Contains moby specific offsets and structures for Ratchet and Clank 4.
+ *     Contains moby specific offsets and structures for Ratchet and Clank 4.
  * 
  * NOTES :
- * 		Each offset is determined per app id.
- * 		This is to ensure compatibility between versions of Ratchet and Clank 4.
- * 		
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
+ *     Each offset is determined per app id.
+ *     This is to ensure compatibility between versions of Ratchet and Clank 4.
+ *     
+ * AUTHOR :      Daniel "Dnawrkshp" Gerendasy
  */
 
 #ifndef _LIBRAC4_MOBY_H_
@@ -19,9 +19,32 @@
 #include "common.h"
 #include "gid.h"
 
+struct Guber;
 struct GuberMoby;
 struct GuberEvent;
 struct Gid;
+
+//--------------------------------------------------------
+enum MobyModeBit
+{
+  MOBY_MODE_BIT_NONE =                  (0x0000),
+  MOBY_MODE_BIT_DISABLED =              (0x0001),
+  MOBY_MODE_BIT_NO_UPDATE =             (0x0002),
+  MOBY_MODE_BIT_NO_POST_UPDATE =        (0x0004),
+  MOBY_MODE_BIT_TRANSPARENT =           (0x0008),
+  MOBY_MODE_BIT_HAS_GLOW =              (0x0010),
+  MOBY_MODE_BIT_HAS_SPECIAL_VARS =      (0x0020),
+  MOBY_MODE_BIT_UNK_40 =                (0x0040),
+  MOBY_MODE_BIT_HIDDEN =                (0x0080),
+  MOBY_MODE_BIT_LOCK_ROTATION =         (0x0100),
+  MOBY_MODE_BIT_DRAW_TRANSPARENT_WEIRD =(0x0200),
+  MOBY_MODE_BIT_DRAW_SHADOW =           (0x0400),
+  MOBY_MODE_BIT_DISABLE_Z_WRITE =       (0x0800),
+  MOBY_MODE_BIT_CAN_BE_AUTO_TARGETED =  (0x1000),
+  MOBY_MODE_BIT_HIDE_BACKFACES =        (0x2000),
+  MOBY_MODE_BIT_CAN_BE_DAMAGED =        (0x4000),
+  MOBY_MODE_BIT_MIRROR =                (0x8000),
+};
 
 //--------------------------------------------------------
 enum MobyId
@@ -375,99 +398,156 @@ enum MobyId
     MOBY_ID_BIG_BROWN_CIRCLE_THING_2 = 0x3341,
 };
 
-/*
- * NAME :		Moby
- * 
- * DESCRIPTION :
- * 			Contains the moby struct data.
- * 
- * NOTES :
- *          Mobies are objects that can be spawned in game.
- *          This includes things like vehicles, turrets, mod pads, etc
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-typedef struct Moby
-{
-    VECTOR BSphere;
-    VECTOR Position;
-    char State;
-    u8 Group;
-    char MClass;
-    u8 Opacity;
-    void * PClass;
-    struct Moby * PChain;
-    char CollDamage;
-    char DeathCnt;
-    u16 OcclIndex;
-    char UpdateDist;
-    char Drawn;
-    short DrawDist;
-    u16 ModeBits;
-    u16 ModeBits2;
-    u32 Lights;
-    u32 PrimaryColor;
-    void * AnimSeq;
-    float AnimSeqT;
-    float AnimSpeed;
-    short AnimIScale;
-    short PoseCacheEntryIndex;
-    void * AnimLayers;
-    char AnimSeqId;
-    char AnimFlags;
-    char LSeq;
-    char JointCnt;
-    void * JointCache;
-    void * PManipulator;
-    u32 GlowRGBA;
-    char LodTrans;
-    char LodTrans2;
-    char Metal;
-    char SubState;
-    char PrevState;
-    char StateType;
-    u16 StateTimer;
-    char SoundTrigger;
-    char SoundDesired;
-    short SoundChannel;
-    float Scale;
-    u16 Bangles;
-    char Shadow;
-    char ShadowIndex;
-    float ShadowPlane;
-    float ShadowRange;
-    VECTOR LSphere;
-    union
-    {
-        struct GuberMoby * GuberMoby;
-        void * NetObject;
-        Gid NetObjectGid;
-    };
-    short UpdateId;
-    short Spad0;
-    int * CollData;
-    int CollActive;
-    u32 CollCnt;
-    char GridMinX;
-    char GridMinY;
-    char GridMaxX;
-    char GridMaxY;
-    void * PUpdate;
-    void * PVar;
-    char Mission;
-    char Pad;
-    short UID;
-    short Bolts;
-    u16 Xp;
-    struct Moby* PParent;
-    short OClass;
-    char Triggers;
-    char StandardDeathCalled;
-    VECTOR M0_03;
-    VECTOR M1_03;
-    VECTOR M2_03;
-    VECTOR Rotation;
+typedef struct Moby { // 0x100
+	/* 0x00 */ VECTOR bSphere;
+	/* 0x10 */ VECTOR pos;
+	/* 0x20 */ char state;
+	/* 0x21 */ unsigned char group;
+	/* 0x22 */ char mClass;
+	/* 0x23 */ char alpha;
+	/* 0x24 */ struct MobyClass *pClass;
+	/* 0x28 */ struct Moby *pChain;
+	/* 0x2c */ char collDamage;
+	/* 0x2d */ signed char deathCnt;
+	/* 0x2e */ short unsigned int occlIndex;
+	/* 0x30 */ char updateDist;
+	/* 0x31 */ char drawn;
+	/* 0x32 */ short int drawDist;
+	/* 0x34 */ short unsigned int modeBits;
+	/* 0x36 */ short unsigned int modeBits2;
+	/* 0x38 */ u32 lights[2];
+	/* 0x40 */ struct MobySeq *animSeq;
+	/* 0x44 */ float animSeqT;
+	/* 0x48 */ float animSpeed;
+	/* 0x4c */ short int animIScale;
+	/* 0x4e */ short int poseCacheEntryIndex;
+	/* 0x50 */ struct MobyAnimLayer *animLayers;
+	/* 0x54 */ char animSeqId;
+	/* 0x55 */ char animFlags;
+	/* 0x56 */ char lSeq;
+	/* 0x57 */ char jointCnt;
+	/* 0x58 */ mtx4 *jointCache;
+	/* 0x5c */ struct Manipulator *pManipulator;
+	/* 0x60 */ int glow_rgba;
+	/* 0x64 */ char lod_trans;
+	/* 0x65 */ char lod_trans2;
+	/* 0x66 */ char metal;
+	/* 0x67 */ char subState;
+	/* 0x68 */ char prevState;
+	/* 0x69 */ char stateType;
+	/* 0x6a */ short unsigned int stateTimer;
+	/* 0x6c */ char soundTrigger;
+	/* 0x6d */ char soundDesired;
+	/* 0x6e */ short int soundChannel;
+	/* 0x70 */ float scale;
+	/* 0x74 */ short unsigned int bangles;
+	/* 0x76 */ char shadow;
+	/* 0x77 */ char shadow_index;
+	/* 0x78 */ float shadow_plane;
+	/* 0x7c */ float shadow_range;
+	/* 0x80 */ VECTOR lSphere;
+	/* 0x90 */ void *netObject;
+	/* 0x94 */ short int updateID;
+	/* 0x96 */ short int spad0;
+	/* 0x98 */ int *collData;
+	/* 0x9c */ int collActive;
+	/* 0xa0 */ unsigned int collCnt;
+	/* 0xa4 */ char grid_min_x;
+	/* 0xa5 */ char grid_min_y;
+	/* 0xa6 */ char grid_max_x;
+	/* 0xa7 */ char grid_max_y;
+	/* 0xa8 */ void (*pUpdate)(struct Moby*);
+	/* 0xac */ void *pVar;
+	/* 0xb0 */ char mission;
+	/* 0xb1 */ char pad;
+	/* 0xb2 */ short int UID;
+	/* 0xb4 */ short int bolts;
+	/* 0xb6 */ short unsigned int xp;
+	/* 0xb8 */ struct Moby *pParent;
+	/* 0xbc */ short int oClass;
+	/* 0xbe */ char triggers;
+	/* 0xbf */ char standarddeathcalled;
+	/* 0xc0 */ mtx3 rMtx;
+	/* 0xf0 */ VECTOR rot;
 } Moby;
+
+struct MobyReactAnim { // 0x20
+	/* 0x00 */ char animType;
+	/* 0x01 */ char startFrame;
+	/* 0x02 */ char endFrame;
+	/* 0x03 */ char cpad;
+	/* 0x04 */ float drag_mps;
+	/* 0x08 */ float xySpeed_mps;
+	/* 0x0c */ float zSpeed_mps;
+	/* 0x10 */ float upGrav_mps;
+	/* 0x14 */ float downGrav_mps;
+	/* 0x18 */ float peakFrame;
+	/* 0x1c */ float landFrame;
+};
+
+struct MoveAnimData { // 0x20
+	/* 0x00 */ char elv_state;
+	/* 0x01 */ char alert_state;
+	/* 0x02 */ char turning;
+	/* 0x03 */ char motivation_state;
+	/* 0x04 */ char motivation_dir;
+	/* 0x05 */ char action_state;
+	/* 0x06 */ char reaction_state;
+	/* 0x07 */ char animGroup;
+	/* 0x08 */ int flags;
+	/* 0x0c */ float linear_rate;
+	/* 0x10 */ float angular_rate;
+	/* 0x14 */ float trigger_frame;
+	/* 0x18 */ int pad[2];
+};
+
+struct MobyAnimInfo { // 0x8
+	/* 0x0 */ struct MobyReactAnim *reactData;
+	/* 0x4 */ struct MoveAnimData *auxData;
+};
+
+struct MobySeq { // 0x20
+	/* 0x00 */ VECTOR bSphere;
+	/* 0x10 */ char frameCnt;
+	/* 0x11 */ signed char sound;
+	/* 0x12 */ char trigsCnt;
+	/* 0x13 */ char pad;
+	/* 0x14 */ short int *trigs;
+	/* 0x18 */ struct MobyAnimInfo *animInfo;
+	/* 0x1c */ void *frameData;
+};
+
+struct MobyClass { // 0x50
+	/* 0x00 */ void *packets;
+	/* 0x04 */ char packet_cnt_0;
+	/* 0x05 */ char packet_cnt_1;
+	/* 0x06 */ char metal_cnt;
+	/* 0x07 */ char metal_ofs;
+	/* 0x08 */ char joint_cnt;
+	/* 0x09 */ char pad;
+	/* 0x0a */ char packet_cnt_2;
+	/* 0x0b */ char team_texs;
+	/* 0x0c */ char seq_cnt;
+	/* 0x0d */ char sound_cnt;
+	/* 0x0e */ char lod_trans;
+	/* 0x0f */ char shadow;
+	/* 0x10 */ short int *collision;
+	/* 0x14 */ void *skeleton;
+	/* 0x18 */ void *common_trans;
+	/* 0x1c */ void *anim_joints;
+	/* 0x20 */ void *gif_usage;
+	/* 0x24 */ float gScale;
+	/* 0x28 */ struct SoundDef *sound_defs;
+	/* 0x2c */ char bangles;
+	/* 0x2d */ char mip_dist;
+	/* 0x2e */ short int corncob;
+	/* 0x30 */ VECTOR bSphere;
+	/* 0x40 */ int glow_rgba;
+	/* 0x44 */ short int mode_bits;
+	/* 0x46 */ char type;
+	/* 0x47 */ char mode_bits2;
+	/* 0x48 */ struct MobySeq *seqs[0];
+};
 
 typedef struct MobyColDamageIn {
     VECTOR Momentum;
@@ -482,6 +562,34 @@ typedef struct MobyColDamageIn {
     int ShotUID;
     int UNK_2C;
 } MobyColDamageIn;
+
+typedef struct MobyAnimLayer { // 0x20
+	/* 0x00 */ struct MobySeq *animSeq;
+	/* 0x04 */ float animSeqT;
+	/* 0x08 */ float animSpeed;
+	/* 0x0c */ short int animIScale;
+	/* 0x0e */ short int poseCacheEntryIndex;
+	/* 0x10 */ struct MobyAnimLayer *nextLayer;
+	/* 0x14 */ char animSeqId;
+	/* 0x15 */ char animFlags;
+	/* 0x16 */ char animJointIndexA;
+	/* 0x17 */ char animJointIndexB;
+	/* 0x18 */ float blendWeight;
+	/* 0x1c */ float blendFade;
+} MobyAnimLayer_t;
+
+typedef struct MobyAnimLayerCommon { // 0x20
+	/* 0x00 */ struct MobySeq *animSeq;
+	/* 0x04 */ float animSeqT;
+	/* 0x08 */ float animSpeed;
+	/* 0x0c */ short int animIScale;
+	/* 0x0e */ short int poseCacheEntryIndex;
+	/* 0x10 */ struct MobyAnimLayer *nextLayer;
+	/* 0x14 */ char animSeqId;
+	/* 0x15 */ char animFlags;
+	/* 0x16 */ char pad_b[2];
+	/* 0x18 */ int pad_w[2];
+} MobyAnimLayerCommon_t;
 
 typedef struct MobyColDamage {
     VECTOR Ip;
@@ -513,179 +621,181 @@ typedef struct Manipulator { // 0x40
 
 
 enum FlashTypes {
-	FT_NONE = 0,
-	FT_HIT = 1,
-	FT_SELECT = 2,
-	FT_PULSE = 3,
-	FT_BLINK = 4,
-	FT_SOLID = 5,
-	FT_SLOWFADE = 6
+  FT_NONE = 0,
+  FT_HIT = 1,
+  FT_SELECT = 2,
+  FT_PULSE = 3,
+  FT_BLINK = 4,
+  FT_SOLID = 5,
+  FT_SLOWFADE = 6
 };
 
 struct FlashVars {
-	/*   0 */ short int timer;
-	/*   2 */ short int type;
-	/*   4 */ int destColor;
-	/*   8 */ int srcColor;
-	/*   c */ int flags;
+  /*   0 */ short int timer;
+  /*   2 */ short int type;
+  /*   4 */ int destColor;
+  /*   8 */ int srcColor;
+  /*   c */ int flags;
 };
 
-struct TargetVars {
-	/*   0 */ float hitPoints;
-	/*   4 */ int maxHitPoints;
-	/*   8 */ unsigned char attackDamage[6];
-	/*   e */ short int hitCount;
-	/*  10 */ int flags;
-	/*  14 */ float targetHeight;
-	/*  18 */ Moby* mobyThatHurtMeLast;
-	/*  1c */ float camPushDist;
-	/*  20 */ float camPushHeight;
-	/*  24 */ short int damageCounter;
-	/*  26 */ short int empTimer;
-	/*  28 */ short int infectedTimer;
-	/*  2a */ short int invincTimer;
-	/*  2c */ short int bogeyType;
-	/*  2e */ short int team;
-	/*  30 */ char lookAtMeDist;
-	/*  31 */ char lookAtMePriority;
-	/*  32 */ char lookAtMeZOfsIn8ths;
-	/*  33 */ char lookAtMeJoint;
-	/*  34 */ char lookAtMeExpression;
-	/*  35 */ char lockOnPriority;
-	/*  36 */ char soundType;
-	/*  37 */ char targetRadiusIn8ths;
-	/*  38 */ char noAutoTrack;
-	/*  39 */ char trackSpeedInMps;
-	/*  3a */ char camModOverride;
-	/*  3b */ char destroyMe;
-	/*  3c */ char morphoraySpecial;
-	/*  3d */ char headJoint;
-	/*  3e */ char hitByContinuous;
-	/*  3f */ char infected;
-	/*  40 */ char empFxTimer;
-	/*  41 */ char weaponTargetedOnMe;
-	/*  42 */ char isOrganic;
-	/*  43 */ signed char bundleIndex;
-	/*  44 */ char bundleDamage;
-	/*  45 */ char firedAt;
-	/*  46 */ char weaponThatHurtMeLast;
-	/*  47 */ char invalidTarget;
-	/*  48 */ int maxDifficultySlotted;
-	/*  4c */ int curDifficultySlotted;
-	/*  50 */ Moby* pTargettedByBogeys[8];
-	/*  70 */ Moby* mobyThatFiredAtMe;
-	/*  74 */ int targetShadowMask;
-	/*  78 */ int damageTypes;
-	/*  7c */ int padA;
-	/*  80 */ float morphDamage;
-	/*  84 */ float freezeDamage;
-	/*  88 */ float infectDamage;
-	/*  8c */ float lastDamage;
-};
+typedef struct TargetVars { // 0x90
+	/* 0x00 */ float hitPoints;
+	/* 0x04 */ int maxHitPoints;
+	/* 0x08 */ unsigned char attackDamage[6];
+	/* 0x0e */ short int hitCount;
+	/* 0x10 */ int flags;
+	/* 0x14 */ float targetHeight;
+	/* 0x18 */ Moby *mobyThatHurtMeLast;
+	/* 0x1c */ float camPushDist;
+	/* 0x20 */ float camPushHeight;
+	/* 0x24 */ short int damageCounter;
+	/* 0x26 */ short int empTimer;
+	/* 0x28 */ short int infectedTimer;
+	/* 0x2a */ short int invincTimer;
+	/* 0x2c */ short int bogeyType;
+	/* 0x2e */ short int team;
+	/* 0x30 */ char lookAtMeDist;
+	/* 0x31 */ char lookAtMePriority;
+	/* 0x32 */ char lookAtMeZOfsIn8ths;
+	/* 0x33 */ char lookAtMeJoint;
+	/* 0x34 */ char lookAtMeExpression;
+	/* 0x35 */ char lockOnPriority;
+	/* 0x36 */ char soundType;
+	/* 0x37 */ char targetRadiusIn8ths;
+	/* 0x38 */ char noAutoTrack;
+	/* 0x39 */ char trackSpeedInMps;
+	/* 0x3a */ char camModOverride;
+	/* 0x3b */ char destroyMe;
+	/* 0x3c */ char morphoraySpecial;
+	/* 0x3d */ char headJoint;
+	/* 0x3e */ char hitByContinuous;
+	/* 0x3f */ char infected;
+	/* 0x40 */ char empFxTimer;
+	/* 0x41 */ char weaponTargetedOnMe;
+	/* 0x42 */ char isOrganic;
+	/* 0x43 */ signed char bundleIndex;
+	/* 0x44 */ char bundleDamage;
+	/* 0x45 */ char firedAt;
+	/* 0x46 */ char weaponThatHurtMeLast;
+	/* 0x47 */ char invalidTarget;
+	/* 0x48 */ int maxDifficultySlotted;
+	/* 0x4c */ int curDifficultySlotted;
+	/* 0x50 */ Moby *pTargettedByBogeys[8];
+	/* 0x70 */ Moby *mobyThatFiredAtMe;
+	/* 0x74 */ int targetShadowMask;
+	/* 0x78 */ int damageTypes;
+	/* 0x7c */ int pad_7c;
+	/* 0x80 */ float morphDamage;
+	/* 0x84 */ float freezeDamage;
+	/* 0x88 */ float infectDamage;
+	/* 0x8c */ float lastDamage;
+} TargetVars_t;
 
 struct MoveVarsAnimCache {
-	/*   0 */ long unsigned int actCache[32];
-	/* 100 */ long unsigned int reactCache[7];
-	/* 138 */ long unsigned int elvCache[5];
-	/* 160 */ long unsigned int motCache[3];
-	/* 178 */ long unsigned int dirCache[4];
-	/* 198 */ long unsigned int grpCache[33];
-	/* 2a0 */ long unsigned int alertCache[4];
+  /*   0 */ long unsigned int actCache[32];
+  /* 100 */ long unsigned int reactCache[7];
+  /* 138 */ long unsigned int elvCache[5];
+  /* 160 */ long unsigned int motCache[3];
+  /* 178 */ long unsigned int dirCache[4];
+  /* 198 */ long unsigned int grpCache[33];
+  /* 2a0 */ long unsigned int alertCache[4];
 };
 
 struct MoveVars_V2 {
-	/*   0 */ int flags;
-	/*   4 */ int internalFlags;
-	/*   8 */ int effectorFlags;
-	/*   c */ int dirty;
-	/*  10 */ float maxStepUp;
-	/*  14 */ float maxStepDown;
-	/*  18 */ int avoidHotspots;
-	/*  1c */ int passThruHotspots;
-	/*  20 */ short int arrestedTimer;
-	/*  22 */ short int lostTimer;
-	/*  24 */ float gravity;
-	/*  28 */ float slopeLimit;
-	/*  2c */ float maxFlightAngle;
-	/*  30 */ char elv_state;
-	/*  31 */ char alert_state;
-	/*  32 */ char reaction_state;
-	/*  33 */ char action_state;
-	/*  34 */ char blend;
-	/*  35 */ char lockAnim;
-	/*  36 */ short int numColl;
-	/*  38 */ struct MoveVarsAnimCache* pAnimCache;
-	/*  3c */ struct MoveVarsAnimCache* pAttachAnimCache;
-	/*  40 */ Moby** effectorOverrideList;
-	/*  44 */ int effectorOverrideCount;
-	/*  48 */ int boundArea;
-	/*  4c */ Moby* pIgnoreCollMoby;
-	/*  50 */ Moby* pBumpMoby;
-	/*  54 */ Moby* pGroundMoby;
-	/*  58 */ Moby* pIgnoreEffector;
-	/*  5c */ Moby* pAttach;
-	/*  60 */ int attachJoint;
-	/*  64 */ float attachMaxRot;
-	/*  68 */ float actionStartFrame;
-	/*  6c */ void* pActionCallback;
-	/*  70 */ int lastUpdateFrame;
-	/*  74 */ int animGroups;
-	/*  78 */ float collRadius;
-	/*  7c */ float gravityVel;
-	/*  80 */ float swarmOfsAmp;
-	/*  84 */ int swarmOfsTimer;
-	/*  88 */ int swarmOfsMinTime;
-	/*  8c */ int swarmOfsMaxTime;
-	/*  90 */ float stopDist;
-	/*  94 */ float walkDist;
-	/*  98 */ float runDist;
-	/*  9c */ float walkSpeed;
-	/*  a0 */ float runSpeed;
-	/*  a4 */ float strafeSpeed;
-	/*  a8 */ float backSpeed;
-	/*  ac */ float flySpeed;
-	/*  b0 */ float linearAccel;
-	/*  b4 */ float linearDecel;
-	/*  b8 */ float linearLimit;
-	/*  bc */ float linearSpeed;
-	/*  c0 */ float angularAccel;
-	/*  c4 */ float angularDecel;
-	/*  c8 */ float angularLimit;
-	/*  cc */ float hitGroundSpeed;
-	/*  d0 */ float legFacing;
-	/*  d4 */ float bodyFacing;
-	/*  d8 */ float legAngularSpeed;
-	/*  dc */ float bodyAngularSpeed;
-	/*  e0 */ float groundSlope;
-	/*  e4 */ float groundZ;
-	/*  e8 */ int groundHotspot;
-	/*  ec */ int groundCheckFrame;
-	/*  f0 */ int onGround;
-	/*  f4 */ int offGround;
-	/*  f8 */ float passThruSurface;
-	/*  fc */ int passThruSurfaceType;
-	/* 100 */ float projectedLandingZ;
-	/* 104 */ float moveDamper;
-	/* 108 */ short int moveDamperTimer;
-	/* 10a */ char curNode;
-	/* 10b */ char destNode;
-	/* 10c */ struct Path* pLastFollowPath;
-	/* 110 */ float walkTurnFactor;
-	/* 114 */ float desiredFacing;
-	/* 120 */ VECTOR vel;
-	/* 130 */ VECTOR arrestedPos;
-	/* 140 */ VECTOR groundNormal;
-	/* 150 */ VECTOR jumpVel;
-	/* 160 */ VECTOR target;
-	/* 170 */ VECTOR passThruPoint;
-	/* 180 */ VECTOR passThruNormal;
-	/* 190 */ VECTOR waypoint;
-	/* 1a0 */ u64 groupCache;
-	/* 1a8 */ u64 attachGroupCache;
+  /*   0 */ int flags;
+  /*   4 */ int internalFlags;
+  /*   8 */ int effectorFlags;
+  /*   c */ int dirty;
+  /*  10 */ float maxStepUp;
+  /*  14 */ float maxStepDown;
+  /*  18 */ int avoidHotspots;
+  /*  1c */ int passThruHotspots;
+  /*  20 */ short int arrestedTimer;
+  /*  22 */ short int lostTimer;
+  /*  24 */ float gravity;
+  /*  28 */ float slopeLimit;
+  /*  2c */ float maxFlightAngle;
+  /*  30 */ char elv_state;
+  /*  31 */ char alert_state;
+  /*  32 */ char reaction_state;
+  /*  33 */ char action_state;
+  /*  34 */ char blend;
+  /*  35 */ char lockAnim;
+  /*  36 */ short int numColl;
+  /*  38 */ struct MoveVarsAnimCache* pAnimCache;
+  /*  3c */ struct MoveVarsAnimCache* pAttachAnimCache;
+  /*  40 */ Moby** effectorOverrideList;
+  /*  44 */ int effectorOverrideCount;
+  /*  48 */ int boundArea;
+  /*  4c */ Moby* pIgnoreCollMoby;
+  /*  50 */ Moby* pBumpMoby;
+  /*  54 */ Moby* pGroundMoby;
+  /*  58 */ Moby* pIgnoreEffector;
+  /*  5c */ Moby* pAttach;
+  /*  60 */ int attachJoint;
+  /*  64 */ float attachMaxRot;
+  /*  68 */ float actionStartFrame;
+  /*  6c */ void* pActionCallback;
+  /*  70 */ int lastUpdateFrame;
+  /*  74 */ int animGroups;
+  /*  78 */ float collRadius;
+  /*  7c */ float gravityVel;
+  /*  80 */ float swarmOfsAmp;
+  /*  84 */ int swarmOfsTimer;
+  /*  88 */ int swarmOfsMinTime;
+  /*  8c */ int swarmOfsMaxTime;
+  /*  90 */ float stopDist;
+  /*  94 */ float walkDist;
+  /*  98 */ float runDist;
+  /*  9c */ float walkSpeed;
+  /*  a0 */ float runSpeed;
+  /*  a4 */ float strafeSpeed;
+  /*  a8 */ float backSpeed;
+  /*  ac */ float flySpeed;
+  /*  b0 */ float linearAccel;
+  /*  b4 */ float linearDecel;
+  /*  b8 */ float linearLimit;
+  /*  bc */ float linearSpeed;
+  /*  c0 */ float angularAccel;
+  /*  c4 */ float angularDecel;
+  /*  c8 */ float angularLimit;
+  /*  cc */ float hitGroundSpeed;
+  /*  d0 */ float legFacing;
+  /*  d4 */ float bodyFacing;
+  /*  d8 */ float legAngularSpeed;
+  /*  dc */ float bodyAngularSpeed;
+  /*  e0 */ float groundSlope;
+  /*  e4 */ float groundZ;
+  /*  e8 */ int groundHotspot;
+  /*  ec */ int groundCheckFrame;
+  /*  f0 */ int onGround;
+  /*  f4 */ int offGround;
+  /*  f8 */ float passThruSurface;
+  /*  fc */ int passThruSurfaceType;
+  /* 100 */ float projectedLandingZ;
+  /* 104 */ float moveDamper;
+  /* 108 */ short int moveDamperTimer;
+  /* 10a */ char curNode;
+  /* 10b */ char destNode;
+  /* 10c */ struct Path* pLastFollowPath;
+  /* 110 */ float walkTurnFactor;
+  /* 114 */ float desiredFacing;
+  /* 120 */ VECTOR vel;
+  /* 130 */ VECTOR arrestedPos;
+  /* 140 */ VECTOR groundNormal;
+  /* 150 */ VECTOR jumpVel;
+  /* 160 */ VECTOR target;
+  /* 170 */ VECTOR passThruPoint;
+  /* 180 */ VECTOR passThruNormal;
+  /* 190 */ VECTOR waypoint;
+  /* 1a0 */ u64 groupCache;
+  /* 1a8 */ u64 attachGroupCache;
 };
 
-typedef void (*MobyGetInterface_func)(int mobyId, int arg2, int arg3);
-typedef void (*MobyGetGuberObject_func)(Moby * moby);
+struct MobyFunctions;
+
+typedef struct MobyFunctions* (*MobyGetInterface_func)(int mobyId, int arg2, int arg3);
+typedef struct Guber* (*MobyGetGuberObject_func)(Moby * moby);
 typedef void (*MobyEventHandler_func)(Moby * moby, struct GuberEvent * event);
 
 typedef struct MobyFunctions
@@ -733,6 +843,17 @@ __LIBRAC4_GETTER__ int mobyIsDestroyed(Moby* moby);
 Moby* mobyFindNextByOClass(Moby* start, int oClass);
 
 /*
+ * Returns a pointer to the moby with the given uid.
+ * Returns NULL if none found.
+ */
+Moby* mobyFindByUID(int uid);
+
+/*
+ * Returns pointer to the moby's MobyClass (if loaded).
+ */
+void * mobyGetClass(int oClass);
+
+/*
  * Returns non-zero if the given o class is loaded in the map.
  */
 int mobyClassIsLoaded(int oClass);
@@ -761,6 +882,11 @@ void mobySetState(Moby* moby, char a1, long a2);
  * 
  */
 int mobyPlaySound(short a0, u8 a1, Moby* moby);
+
+/*
+ * 
+ */
+int mobyPlaySoundByClass(short a0, u8 a1, Moby* moby, int oclass);
 
 /*
  * 
@@ -849,13 +975,31 @@ void mobyStartFlash(Moby* moby, int flashType, u32 color, struct FlashVars* flas
  */
 void mobyBlowCorn(Moby* moby, int bangle, u128 baseVelocity
                 , float minEmitHorizontalSpeed, float maxEmitHorizontalSpeed, float minEmitVerticalSpeed, float maxEmitVerticalSpeed
-                , char arg8
+                , char sound
                 , float gravity, float rotationalVelocity
-                , int lifetime, int arg12
-                , int arg13, int bArg14, float arg15, int arg16
-                , int arg17, float arg18, Moby* arg19, int arg20);
+                , int lifetime, int ignoreCpu
+                , int flameMode, int flamePercent, float flameScale, int lightningMode
+                , int lightningStrands, float strandWidthScale, Moby* parent, int flags);
 
 void mobyGetJointMatrix(Moby* moby, int jointIdx, MATRIX out);
+void mobyComputeJointWorldMatrix(Moby* moby, int jointIdx, MATRIX out);
+
+/*
+ *
+ */
+Moby* mobySpawnExplosion(u128 pos,int bCameraShake,int numMoonRock,int numSliver,
+              int numMoltenRock,int numCloud,u16 numLines,u16 numPlumes,int bDistort,
+              int bShell,int bScreenFlash1,int bScreenFlash2,int bGroundRing,int bRandomRing,
+              int damageFlags,Moby *pPlatform,int colorCenterCore1,int colorCenterCore2,int colorMoonRock,
+              int colorMoonRockGlow,int colorSliver,int colorMoltenRock,int colorCloud,
+              int colorShell,int colorRing,int bDirtyRing,Moby *pDamager,Moby *pIgnore,u128 externalVel,
+              float exploScale,float pointLightRadius,float damageHp,float damageRadius);
+
+
+Moby* mobySpawnSplash(u128 position, u128 quat, int life, u32 color, float scale, float height, float radius, float scaleDir, float heightDir, float radiusDir);
+
+void mobySpawnMinibombs(Moby* pParent, int count, VECTOR rootVel, float randSpeed, float damage, int damageFlags, int lifeTimeMin, int lifeTimeMax, int weaponSource);
+struct TargetVars* mobyGetTargetVars(Moby* moby);
 
 int flagIsReturning(Moby* flagMoby);
 int flagIsBeingPickedUp(Moby* flagMoby);

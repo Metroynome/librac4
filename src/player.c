@@ -90,9 +90,9 @@ void playerSetTeam(Player * player, int teamId)
 
     
     player->mpTeam = teamId;
-    player->pMoby->GlowRGBA = TEAM_COLORS[teamId];
-    player->pMoby->ModeBits2 = (player->pMoby->ModeBits2 & 0xff) | ((0x80 + (8 * teamId)) << 8);
-    player->pMoby->Triggers = 0;
+    player->pMoby->glow_rgba = TEAM_COLORS[teamId];
+    player->pMoby->modeBits2 = (player->pMoby->modeBits2 & 0xff) | ((0x80 + (8 * teamId)) << 8);
+    player->pMoby->triggers = 0;
 }
 
 //--------------------------------------------------------------------------------
