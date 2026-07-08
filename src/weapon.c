@@ -3,8 +3,9 @@
 #include "types.h"
 #include "interop.h"
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaOmniDamageV1Patch = {
+    .MainMenu = 0x003FFE00,
     .Battledome = 0x003D6C00,
     .Catacrom = 0x003CEF80,
     .Sarathos = 0x003CE200,
@@ -17,11 +18,10 @@ VariableAddress_t vaOmniDamageV1Patch = {
     .Maraxus = 0x003CF400,
     .GhostStation = 0x003CF980,
     .DreadZoneInterior = 0x003D3B80,
-    .MainMenu = 0x003FFE00,
-    .MultiplayerMenu = 0x004FE200
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaOmniDamageV1Patch = {
+    .MainMenu = 0x00423E00,
     .Battledome = 0x003F1700,
     .Catacrom = 0x003E9980,
     .Sarathos = 0x003E8C80,
@@ -34,11 +34,10 @@ VariableAddress_t vaOmniDamageV1Patch = {
     .Maraxus = 0x003E9F00,
     .GhostStation = 0x003EA400,
     .DreadZoneInterior = 0x003EE680,
-    .MainMenu = 0x00423E00,
-    .MultiplayerMenu = 0x00518900
 };
 #else
 VariableAddress_t vaOmniDamageV1Patch = {
+    .MainMenu = 0x003FFE00,
     .Battledome = 0x003D6A80,
     .Catacrom = 0x003CED80,
     .Sarathos = 0x003CE000,
@@ -51,13 +50,12 @@ VariableAddress_t vaOmniDamageV1Patch = {
     .Maraxus = 0x003CF300,
     .GhostStation = 0x003CF800,
     .DreadZoneInterior = 0x003D3A00,
-    .MainMenu = 0x003FFE00,
-    .MultiplayerMenu = 0x004FDD00
 };
 #endif
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaOmniDamageV2Patch = {
+    .MainMenu = 0x003FFE10,
     .Battledome = 0x003D6C10,
     .Catacrom = 0x003CEF90,
     .Sarathos = 0x003CE210,
@@ -70,11 +68,10 @@ VariableAddress_t vaOmniDamageV2Patch = {
     .Maraxus = 0x003CF410,
     .GhostStation = 0x003CF990,
     .DreadZoneInterior = 0x003D3B90,
-    .MainMenu = 0x003FFE10,
-    .MultiplayerMenu = 0x004FE210
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaOmniDamageV2Patch = {
+    .MainMenu = 0x00423E10,
     .Battledome = 0x003F1710,
     .Catacrom = 0x003E9990,
     .Sarathos = 0x003E8C90,
@@ -87,11 +84,10 @@ VariableAddress_t vaOmniDamageV2Patch = {
     .Maraxus = 0x003E9F10,
     .GhostStation = 0x003EA410,
     .DreadZoneInterior = 0x003EE690,
-    .MainMenu = 0x00423E10,
-    .MultiplayerMenu = 0x00518910
 };
 #else
 VariableAddress_t vaOmniDamageV2Patch = {
+    .MainMenu = 0x003FFE10,
     .Battledome = 0x003D6A90,
     .Catacrom = 0x003CED90,
     .Sarathos = 0x003CE010,
@@ -104,13 +100,12 @@ VariableAddress_t vaOmniDamageV2Patch = {
     .Maraxus = 0x003CF310,
     .GhostStation = 0x003CF810,
     .DreadZoneInterior = 0x003D3A10,
-    .MainMenu = 0x003FFE10,
-    .MultiplayerMenu = 0x004FDD10
 };
 #endif
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaWrenchDefsTable = {
+    .MainMenu = 0x003E2918,
     .Battledome = 0x003BDA98,
     .Catacrom = 0x003B8198,
     .Sarathos = 0x003B7518,
@@ -123,11 +118,10 @@ VariableAddress_t vaWrenchDefsTable = {
     .Maraxus = 0x003B7D98,
     .GhostStation = 0x003B8898,
     .DreadZoneInterior = 0x003BD118,
-    .MainMenu = 0x003E2918,
-    .MultiplayerMenu = 0x004A5498
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaWrenchDefsTable = {
+    .MainMenu = 0x003FD098,
     .Battledome = 0x003D8298,
     .Catacrom = 0x003D2918,
     .Sarathos = 0x003D1D18,
@@ -140,11 +134,10 @@ VariableAddress_t vaWrenchDefsTable = {
     .Maraxus = 0x003D2598,
     .GhostStation = 0x003D3098,
     .DreadZoneInterior = 0x003D7918,
-    .MainMenu = 0x003FD098,
-    .MultiplayerMenu = 0x004BFC18
 };
 #else
 VariableAddress_t vaWrenchDefsTable = {
+    .MainMenu = 0x003E2918,
     .Battledome = 0x003BDA98,
     .Catacrom = 0x003B8198,
     .Sarathos = 0x003B7518,
@@ -157,13 +150,12 @@ VariableAddress_t vaWrenchDefsTable = {
     .Maraxus = 0x003B7E18,
     .GhostStation = 0x003B8918,
     .DreadZoneInterior = 0x003BD118,
-    .MainMenu = 0x003E2918,
-    .MultiplayerMenu = 0x004A5498
 };
 #endif
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaWeaponDefsTable = {
+    .MainMenu = 0x003E2A18,
     .Battledome = 0x003BDB98,
     .Catacrom = 0x003B8298,
     .Sarathos = 0x003B7618,
@@ -176,11 +168,10 @@ VariableAddress_t vaWeaponDefsTable = {
     .Maraxus = 0x003B7E98,
     .GhostStation = 0x003B8998,
     .DreadZoneInterior = 0x003BD218,
-    .MainMenu = 0x003E2A18,
-    .MultiplayerMenu = 0x004A5598
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaWeaponDefsTable = {
+    .MainMenu = 0x003FD198,
     .Battledome = 0x003D8398,
     .Catacrom = 0x003D2A18,
     .Sarathos = 0x003D1E18,
@@ -193,11 +184,10 @@ VariableAddress_t vaWeaponDefsTable = {
     .Maraxus = 0x003D2698,
     .GhostStation = 0x003D3198,
     .DreadZoneInterior = 0x003D7A18,
-    .MainMenu = 0x003FD198,
-    .MultiplayerMenu = 0x004BFD18
 };
 #else
 VariableAddress_t vaWeaponDefsTable = {
+    .MainMenu = 0x003E2A18,
     .Battledome = 0x003BDB98,
     .Catacrom = 0x003B8298,
     .Sarathos = 0x003B7618,
@@ -210,13 +200,12 @@ VariableAddress_t vaWeaponDefsTable = {
     .Maraxus = 0x003B7F18,
     .GhostStation = 0x003B8A18,
     .DreadZoneInterior = 0x003BD218,
-    .MainMenu = 0x003E2A18,
-    .MultiplayerMenu = 0x004A5598
 };
 #endif
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaFlailDefsTable = {
+    .MainMenu = 0x003E35D8,
     .Battledome = 0x003BE758,
     .Catacrom = 0x003B8E58,
     .Sarathos = 0x003B81D8,
@@ -229,11 +218,10 @@ VariableAddress_t vaFlailDefsTable = {
     .Maraxus = 0x003B8A58,
     .GhostStation = 0x003B9558,
     .DreadZoneInterior = 0x003BDDD8,
-    .MainMenu = 0x003E35D8,
-    .MultiplayerMenu = 0x004A6158
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaFlailDefsTable = {
+    .MainMenu = 0x003FDD58,
     .Battledome = 0x003D8F58,
     .Catacrom = 0x003D35D8,
     .Sarathos = 0x003D29D8,
@@ -246,11 +234,10 @@ VariableAddress_t vaFlailDefsTable = {
     .Maraxus = 0x003D3258,
     .GhostStation = 0x003D3D58,
     .DreadZoneInterior = 0x003D85D8,
-    .MainMenu = 0x003FDD58,
-    .MultiplayerMenu = 0x004C08D8
 };
 #else
 VariableAddress_t vaFlailDefsTable = {
+    .MainMenu = 0x003E35D8,
     .Battledome = 0x003BE758,
     .Catacrom = 0x003B8E58,
     .Sarathos = 0x003B81D8,
@@ -263,8 +250,6 @@ VariableAddress_t vaFlailDefsTable = {
     .Maraxus = 0x003B8AD8,
     .GhostStation = 0x003B95D8,
     .DreadZoneInterior = 0x003BDDD8,
-    .MainMenu = 0x003E35D8,
-    .MultiplayerMenu = 0x004A6158
 };
 #endif
 
@@ -330,7 +315,7 @@ void weaponSetDamage(int weaponId, int level, float damage)
     {
         case WEAPON_ID_WRENCH:
         {
-            WRENCH_DEFS_TABLE->Entries[level].Damage[2] = damage;
+            WRENCH_DEFS_TABLE->Entries[level].gadgetDamage[2] = damage;
             break;
         }
         case WEAPON_ID_OMNI_SHIELD:
@@ -343,12 +328,12 @@ void weaponSetDamage(int weaponId, int level, float damage)
         }
         case WEAPON_ID_FLAIL:
         {
-            FLAIL_DEFS_TABLE->Entries[level].Damage[2] = damage;
+            FLAIL_DEFS_TABLE->Entries[level].gadgetDamage[2] = damage;
             break;
         }
         default:
         {
-            WEAPON_DEFS_TABLE[weaponId - WEAPON_ID_VIPERS].Entries[level].Damage[2] = damage;
+            WEAPON_DEFS_TABLE[weaponId - WEAPON_ID_VIPERS].Entries[level].gadgetDamage[2] = damage;
             break;
         }
     }

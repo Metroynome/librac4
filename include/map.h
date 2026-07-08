@@ -87,6 +87,8 @@ typedef struct
 	/* 0x24 */ MissionLoadState State;
 } MISSIONLOAD;
 
+extern MISSIONLOAD * Mission;
+
 int mapMaskHasMask(int value, int maskValue);
 int mapIdToMask(int mapId);
 int mapMaskToId(int mapMask);
@@ -101,7 +103,7 @@ int mapMaskToId(int mapMask);
  * RETURN: true if active level, false if not.
  * AUTHOR: Troy "Agent Moose" Pruitt
  */
-int mapIsActiveLevel(int Level);
+int mapIsActiveLevel(int levelId);
 /*
  * NAME:		mapIsActiveMission
  * DESCRIPTION:
@@ -133,6 +135,6 @@ void mapResetMission(void);
  * RETURN:
  * AUTHOR: Troy "Agent Moose" Pruitt
  */
-void mapSwitchToLevel(int Level, int Mission);
+void mapSwitchToLevel(int levelId, int missionId);
 
 #endif // _LIBRAC4_MAP_H_

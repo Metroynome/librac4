@@ -3,19 +3,44 @@
 #include "string.h"
 #include "types.h"
 
-#define MC_SEMA                         (*(u32*)RAC4_ADDR_MC_SEMA)
-#define MC_RESULT                       (*(s32*)RAC4_ADDR_MC_RESULT)
+/* Region-local addresses. */
+#if RAC4_PAL
+#define mcCallbackArg0Address 0x00171B70
+#define mcCallbackArg1Address 0x00171B74
+#define mcCallbackFuncAddress 0x0013A7A0
+#define mcCallbackReadyAddress 0x00171B84
+#define mcResultAddress 0x001AEE40
+#define mcSemaAddress 0x00167C7C
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define mcCallbackArg0Address 0x00171A70
+#define mcCallbackArg1Address 0x00171A74
+#define mcCallbackFuncAddress 0x0013A7A0
+#define mcCallbackReadyAddress 0x00171A84
+#define mcResultAddress 0x001AEE40
+#define mcSemaAddress 0x00167B7C
+#else
+#define mcCallbackArg0Address 0x00171AF0
+#define mcCallbackArg1Address 0x00171AF4
+#define mcCallbackFuncAddress 0x0013A7A0
+#define mcCallbackReadyAddress 0x00171B04
+#define mcResultAddress 0x001AEE40
+#define mcSemaAddress 0x00167BFC
+#endif
+
+
+#define MC_SEMA                         (*(u32*)mcSemaAddress)
+#define MC_RESULT                       (*(s32*)mcResultAddress)
 
 //--------------------------------------------------------
 int McPollSema(void)
 {
-    if (*(u32*)RAC4_ADDR_MC_CALLBACK_READY != 0)
+    if (*(u32*)mcCallbackReadyAddress != 0)
     {
-        if (((int (*)(int,int,int))RAC4_ADDR_MC_CALLBACK_FUNC)(1, RAC4_ADDR_MC_CALLBACK_ARG0, RAC4_ADDR_MC_CALLBACK_ARG1) != 1)
+        if (((int (*)(int,int,int))mcCallbackFuncAddress)(1, mcCallbackArg0Address, mcCallbackArg1Address) != 1)
             return -1;
     }
     
-    return *(int*)RAC4_ADDR_MC_CALLBACK_ARG1;
+    return *(int*)mcCallbackArg1Address;
 }
 
 //--------------------------------------------------------

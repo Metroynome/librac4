@@ -3,8 +3,20 @@
 #include "utils.h"
 #include "types.h"
 
-#define UI_ACTIVE_ID                            (*(int*)RAC4_LEVEL_CODE0(0x125338))
-#define UI_DIALOG_A0                            ((void*)RAC4_ADDR_UI_DIALOG_A0)
+/* Region-local addresses. */
+#if RAC4_PAL
+#define UI_ACTIVE_ID                            (*(int*)0x00343538)
+#define UI_DIALOG_A0                            ((void*)0x011C7000)
+#define heroStructPointerAddress                0x001EEB70
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define UI_ACTIVE_ID                            (*(int*)0x0035DCB8)
+#define UI_DIALOG_A0                            ((void*)0x011C7000)
+#define heroStructPointerAddress                0x001EEB70
+#else
+#define UI_ACTIVE_ID                            (*(int*)0x003434B8)
+#define UI_DIALOG_A0                            ((void*)0x011C7000)
+#define heroStructPointerAddress                0x001EEB70
+#endif
 
 int internal_uiDialog(void *, const char *, const char *, int, int, int, int);
 int internal_uiSelectDialog(void *, const char *, const char **, int, int, int, int);
@@ -12,7 +24,7 @@ int internal_uiInputDialog(void *, const char *, char *, int, int, int, int, int
 
 int uiGetAddressByOffset(int Offset)
 {
-    int HeroStruct = *(u32*)RAC4_ADDR_HERO_STRUCT_PTR;
+    int HeroStruct = *(u32*)heroStructPointerAddress;
     if (HeroStruct == 0)
         return;
 

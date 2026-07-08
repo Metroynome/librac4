@@ -498,6 +498,19 @@ typedef struct MobyColDamage {
     Moby* Moby;
 } MobyColDamage;
 
+typedef struct Manipulator { // 0x40
+	/* 0x00 */ char animJoint;
+	/* 0x01 */ char state;
+	/* 0x02 */ signed char scaleOn;
+	/* 0x03 */ char absolute;
+	/* 0x04 */ int jointId;
+	/* 0x08 */ struct Manipulator *pChain;
+	/* 0x0c */ float interp;
+	/* 0x10 */ VECTOR q;
+	/* 0x20 */ VECTOR scale;
+	/* 0x30 */ VECTOR trans;
+} Manipulator_t;
+
 
 enum FlashTypes {
 	FT_NONE = 0,

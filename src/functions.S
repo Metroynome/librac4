@@ -1,7 +1,15 @@
-#include "types.h"
 
-#define GAME_MAP_ID                         (RAC4_ADDR_GAME_MAP_ID)
-#define MISSION_AREA                        (RAC4_ADDR_MISSION_AREA)
+/* Region-local addresses. */
+#if RAC4_PAL
+#define Level                               (0x0021DE90)
+#define Mission                             (0x00171228)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define Level                               (0x00238610)
+#define Mission                             (0x00171128)
+#else
+#define Level                               (0x0021DE10)
+#define Mission                             (0x001711A8)
+#endif
 
 // fixed address function
 #define FUNCTION(name, address) \
@@ -54,12 +62,12 @@ name:												\
 	.set	pop;
 
 __LocalGetAddress_offsets:
-	// GAME_MAP_ID to VariableAddress_t byte offset.
+	// Level to VariableAddress_t byte offset.
 	// Co-op map ids are normalized by subtracting 20 before this lookup.
 	// 1 Battledome, 2 Catacrom, 4 Sarathos, 5 Kronos, 6 Shaar, 7 Valix,
 	// 8 Orxon, 10 Torval, 11 Stygia, 13 Maraxus, 14 Ghost Station,
-	// 15 DreadZone Interior, 16 Main Menu, 17 Multiplayer Menu.
-	.byte -1,0,4,-1,8,12,16,20,24,-1,28,32,-1,36,40,44,48,52;
+	// 15 DreadZone Interior, 16 Main Menu.
+	.byte -1,4,8,-1,12,16,20,24,28,-1,32,36,-1,40,44,48,0;
 
 // 
 	.set	push;
@@ -118,10 +126,7 @@ GetAddressImmediate:
 	.type	__ResolveVariableAddress,@function;
 	.ent	__ResolveVariableAddress,0;
 __ResolveVariableAddress:
-	lw $v0, GAME_MAP_ID;
-	addiu $v1, $zero, 39;
-	beq $v0, $v1, __ResolveVariableAddress_MultiplayerMenu;
-	nop;
+	lw $v0, Level;
 	addiu $v1, $zero, 2;
 	bge $v0, $v1, __ResolveVariableAddress_ByMap;
 	nop;
@@ -132,21 +137,15 @@ __ResolveVariableAddress:
 	nop;
 
 __ResolveVariableAddress_ByMission:
-	lw $v1, MISSION_AREA;
+	lw $v1, Mission;
 	blez $v1, __ResolveVariableAddress_ByMenu;
 	nop;
 	beq $zero, $zero, __ResolveVariableAddress_ByMap;
 	nop;
 
 __ResolveVariableAddress_ByMenu:
-	bne $v0, $zero, __ResolveVariableAddress_AddByte;
-	addiu $v1, $zero, 48;
-	beq $v0, $zero, __ResolveVariableAddress_AddByte;
-	addiu $v1, $zero, 52;
-
-__ResolveVariableAddress_MultiplayerMenu:
 	beq $zero, $zero, __ResolveVariableAddress_AddByte;
-	addiu $v1, $zero, 52;
+	addiu $v1, $zero, 0;
 
 __ResolveVariableAddress_ByMap:
 	// Co-op campaign map ids mirror the campaign ids with +20.
@@ -161,7 +160,7 @@ __ResolveVariableAddress_ByMap:
 	addiu $v0, $v0, -20;
 
 __ResolveVariableAddress_MapNormalized:
-	sltiu $t0, $v0, 18;
+	sltiu $t0, $v0, 17;
 	beq $t0, $zero, __ResolveVariableAddress_Zero;
 	nop;
 	la $v1, __LocalGetAddress_offsets;
@@ -239,10 +238,8 @@ FUNCTION(internal_colorLerp_inLobby, 0x005bd140) # Not Ported
 FUNCTION(EnableFontColors_Multiplayer, 0x005C07C8)
 FUNCTION(DisableFontColors_Multiplayer, 0x005C07E8)
 
-FUNCTION(internal_drawFunc_MultiplayerMenu, 0x005BE058)
 FUNCTION(internal_drawFunc_MainMenu, 0x00454A70)
 
-FUNCTION(internal_widthFunc_MultiplayerMenu, 0x005BDC90)
 FUNCTION(internal_widthFunc_MainMenu, 0x00454780)
 
 FUNCTION(internal_drawBox_inGame, 0x005BE610) # Not Ported
@@ -305,6 +302,8 @@ FUNCTION(mobyGetJointMatrix, 0x004f8150) # Not Ported
 #--------------------------------------------------------
 FUNCTION(playerGiveWeapon, 0x00628018) # Not Ported
 FUNCTION(playerEquipWeapon, 0x005F0208) # Not Ported
+FUNCTION(playerGetWeaponMaxAmmo, 0x00626FB8) # Not Ported
+FUNCTION(playerStripWeapons, 0x005e2e68) # Not Ported
 FUNCTION(playerRespawn, 0x005E2940) # Not Ported
 FUNCTION(playerDropFlag, 0x005F05E8) # Not Ported
 FUNCTION(playerGetFromUID, 0x005cd480) # Not Ported
@@ -313,6 +312,9 @@ FUNCTION(playerIncHealth, 0x005D1140) # Not Ported
 FUNCTION(playerDecHealth, 0x005D1038) # Not Ported
 FUNCTION(playerGetFromSlot, 0x005cd3d0) # Not Ported
 FUNCTION(playerGetSpawnpoint, 0x006242d0) # Not Ported
+FUNCTION(playerGetJuggSafeTeam, 0x005d0fd8) # Not Ported
+FUNCTION(playerIsConnected, 0x004447e8) # Not Ported
+FUNCTION(playerGetWeaponAlphaModCount, 0x006299a8) # Not Ported
 
 #--------------------------------------------------------
 #------------------------ MASTER ------------------------

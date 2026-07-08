@@ -6,6 +6,7 @@
 
 typedef struct VariableAddress
 {
+    u32 MainMenu;
     u32 Battledome;
     u32 Catacrom;
     u32 Sarathos;
@@ -18,13 +19,12 @@ typedef struct VariableAddress
 	u32 Maraxus;
 	u32 GhostStation;
 	u32 DreadZoneInterior;
-	u32 MainMenu;
-	u32 MultiplayerMenu;
 } VariableAddress_t;
 
 typedef union FixedAddress
 {
     u32 Value;
+    u32 MainMenu;
     u32 Battledome;
     u32 Catacrom;
     u32 Sarathos;
@@ -37,8 +37,6 @@ typedef union FixedAddress
 	u32 Maraxus;
 	u32 GhostStation;
 	u32 DreadZoneInterior;
-	u32 MainMenu;
-	u32 MultiplayerMenu;
 } FixedAddress_t;
 
 u32 GetAddress(VariableAddress_t* address);

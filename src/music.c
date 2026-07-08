@@ -3,110 +3,39 @@
 #include "types.h"
 #include "interop.h"
 
-#if defined(RAC4_PAL)
-VariableAddress_t vaTrackRangeMin = {
-    .Battledome = 0x0021EC88,
-    .Catacrom = 0x0021EC88,
-    .Sarathos = 0x0021EC88,
-    .Kronos = 0x0021EC88,
-    .Shaar = 0x0021EC88,
-    .Valix = 0x0021EC88,
-    .Orxon = 0x0021EC88,
-    .Torval = 0x0021EC88,
-    .Stygia = 0x0021EC88,
-    .Maraxus = 0x0021EC88,
-    .GhostStation = 0x0021EC88,
-    .DreadZoneInterior = 0x0021EC88,
-    .MainMenu = 0x0021EC88,
-    .MultiplayerMenu = 0x0021EC88
-};
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
-VariableAddress_t vaTrackRangeMin = {
-    .Battledome = 0x00239408,
-    .Catacrom = 0x00239408,
-    .Sarathos = 0x00239408,
-    .Kronos = 0x00239408,
-    .Shaar = 0x00239408,
-    .Valix = 0x00239408,
-    .Orxon = 0x00239408,
-    .Torval = 0x00239408,
-    .Stygia = 0x00239408,
-    .Maraxus = 0x00239408,
-    .GhostStation = 0x00239408,
-    .DreadZoneInterior = 0x00239408,
-    .MainMenu = 0x00239408,
-    .MultiplayerMenu = 0x00239408
-};
+/* Region-local addresses. */
+#if RAC4_PAL
+#define musicLocationAddress 0x001CF85C
+#define settingsMusicVolumeAddress 0x00171DC4
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define musicLocationAddress 0x001CF85C
+#define settingsMusicVolumeAddress 0x00171CC4
 #else
-VariableAddress_t vaTrackRangeMin = {
-    .Battledome = 0x0021EC08,
-    .Catacrom = 0x0021EC08,
-    .Sarathos = 0x0021EC08,
-    .Kronos = 0x0021EC08,
-    .Shaar = 0x0021EC08,
-    .Valix = 0x0021EC08,
-    .Orxon = 0x0021EC08,
-    .Torval = 0x0021EC08,
-    .Stygia = 0x0021EC08,
-    .Maraxus = 0x0021EC08,
-    .GhostStation = 0x0021EC08,
-    .DreadZoneInterior = 0x0021EC08,
-    .MainMenu = 0x0021EC08,
-    .MultiplayerMenu = 0x0021EC08
-};
+#define musicLocationAddress 0x001CF85C
+#define settingsMusicVolumeAddress 0x00171D44
 #endif
 
-#if defined(RAC4_PAL)
-VariableAddress_t vaTrackRangeMax = {
-    .Battledome = 0x0021EC8C,
-    .Catacrom = 0x0021EC8C,
-    .Sarathos = 0x0021EC8C,
-    .Kronos = 0x0021EC8C,
-    .Shaar = 0x0021EC8C,
-    .Valix = 0x0021EC8C,
-    .Orxon = 0x0021EC8C,
-    .Torval = 0x0021EC8C,
-    .Stygia = 0x0021EC8C,
-    .Maraxus = 0x0021EC8C,
-    .GhostStation = 0x0021EC8C,
-    .DreadZoneInterior = 0x0021EC8C,
-    .MainMenu = 0x0021EC8C,
-    .MultiplayerMenu = 0x0021EC8C
-};
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
-VariableAddress_t vaTrackRangeMax = {
-    .Battledome = 0x0023940C,
-    .Catacrom = 0x0023940C,
-    .Sarathos = 0x0023940C,
-    .Kronos = 0x0023940C,
-    .Shaar = 0x0023940C,
-    .Valix = 0x0023940C,
-    .Orxon = 0x0023940C,
-    .Torval = 0x0023940C,
-    .Stygia = 0x0023940C,
-    .Maraxus = 0x0023940C,
-    .GhostStation = 0x0023940C,
-    .DreadZoneInterior = 0x0023940C,
-    .MainMenu = 0x0023940C,
-    .MultiplayerMenu = 0x0023940C
-};
+
+#if RAC4_PAL
+#define trackRangeMin 0x0021EC88
+#define trackRangeMin_MainMenu 0x0021EC88
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define trackRangeMin 0x00239408
+#define trackRangeMin_MainMenu 0x00239408
 #else
-VariableAddress_t vaTrackRangeMax = {
-    .Battledome = 0x0021EC0C,
-    .Catacrom = 0x0021EC0C,
-    .Sarathos = 0x0021EC0C,
-    .Kronos = 0x0021EC0C,
-    .Shaar = 0x0021EC0C,
-    .Valix = 0x0021EC0C,
-    .Orxon = 0x0021EC0C,
-    .Torval = 0x0021EC0C,
-    .Stygia = 0x0021EC0C,
-    .Maraxus = 0x0021EC0C,
-    .GhostStation = 0x0021EC0C,
-    .DreadZoneInterior = 0x0021EC0C,
-    .MainMenu = 0x0021EC0C,
-    .MultiplayerMenu = 0x0021EC0C
-};
+#define trackRangeMin 0x0021EC08
+#define trackRangeMin_MainMenu 0x0021EC08
+#endif
+
+#if RAC4_PAL
+#define trackRangeMax 0x0021EC8C
+#define trackRangeMax_MainMenu 0x0021EC8C
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define trackRangeMax 0x0023940C
+#define trackRangeMax_MainMenu 0x0023940C
+#else
+#define trackRangeMax 0x0021EC0C
+#define trackRangeMax_MainMenu 0x0021EC0C
 #endif
 
 //--------------------------------------------------------
@@ -125,22 +54,22 @@ void internal_wadGetSectors(u64, u64, u64);
 /*
  * Games music volume setting.
  */
-#define MUSIC_VOLUME (*(u32*)RAC4_ADDR_MUSIC_VOLUME)
+#define SettingsMusicVolume (*(u32*)settingsMusicVolumeAddress)
 
 /*
  * This is what is used to figure out where to load the tracks from.
  */
-#define MUSIC_LOCATION (*(u32*)RAC4_ADDR_MUSIC_LOCATION)
+#define MUSIC_LOCATION (*(u32*)musicLocationAddress)
 
 /*
  * Defines which track to start on.
  */
-#define TRACK_RANGE_MIN (*(u8*)GetAddress(&vaTrackRangeMin))
+#define TRACK_RANGE_MIN (*(u8*)trackRangeMin)
 
 /*
  * How many tracks to play, starting at TRACK_RANGE_MIN
  */
-#define TRACK_RANGE_MAX (*(u8*)GetAddress(&vaTrackRangeMax))
+#define TRACK_RANGE_MAX (*(u8*)trackRangeMax)
 
 //--------------------------------------------------------------------------------
 void musicPlayTrack(int TrackNumber, int KeepPlaying)

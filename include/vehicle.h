@@ -137,8 +137,8 @@ typedef struct VehicleBase {
 	/* 2a0 */ VECTOR comeToRestTotal;
 	/* 2b0 */ struct Moby* pMoby;
 	/* 2b4 */ struct Moby* pTarget;
-	/* 2b8 */ struct Player* pDriver;
-	/* 2bc */ struct Player* pPassenger;
+	/* 2b8 */ struct Hero* pDriver;
+	/* 2bc */ struct Hero* pPassenger;
 	/* 2c0 */ int netUpdatedTimeStamp;
 	/* 2c4 */ int netUpdatedPassengerTimeStamp;
 	/* 2c8 */ int explodeTime;
@@ -173,8 +173,8 @@ typedef struct VehicleBase {
 	/* 31c */ float fPassengerAttackDamage;
 	/* 320 */ int timeSinceLastMessage;
 	/* 324 */ struct VehicleInterface* pInterface;
-	/* 328 */ struct Player* pCutSceneDriver;
-	/* 32c */ struct Player* pCutScenePassenger;
+	/* 328 */ struct Hero* pCutSceneDriver;
+	/* 32c */ struct Hero* pCutScenePassenger;
 	/* 330 */ struct Moby* pSpawningEffect;
 	/* 334 */ struct Moby* pSpawningPad;
 	/* 338 */ float fRunOverDamageMultiplier;
@@ -195,7 +195,7 @@ typedef struct VehicleBase {
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-void vehicleRemovePlayer(Vehicle * vehicle, struct Player * player);
+void vehicleRemovePlayer(Vehicle * vehicle, struct Hero * player);
 
 /*
  * NAME :		vehicleAddPlayer
@@ -211,6 +211,6 @@ void vehicleRemovePlayer(Vehicle * vehicle, struct Player * player);
  * 
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
-void vehicleAddPlayer(Vehicle * vehicle, struct Player * player);
+void vehicleAddPlayer(Vehicle * vehicle, struct Hero * player);
 
 #endif // _LIBRAC4_VEHICLE_H_

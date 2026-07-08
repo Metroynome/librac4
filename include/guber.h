@@ -120,7 +120,7 @@ GuberEvent * guberEventCreateEvent(Guber * guber, int eventId, int arg3, int arg
 
 int guberMobyCreateSpawned(short mobyId, short pvarSize, GuberEvent ** event, Guber * parent);
 
-struct Player * guberMobyGetPlayerDamager(Moby* moby);
+struct Hero * guberMobyGetPlayerDamager(Moby* moby);
 
 void guberMobyDestroy(Moby* moby);
 

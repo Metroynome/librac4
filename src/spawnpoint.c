@@ -4,21 +4,24 @@
 #include "game.h"
 #include "types.h"
 
+/* Region-local addresses. */
+#if RAC4_PAL
+#define SPAWNPOINTS         ((SpawnPoint*)(*(u32*)0x002228A0))
+#define SP_COUNT            (*(int*)0x002228A4)
+#define SP_HILL_PTR         (*(u32*)0x00222718)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define SPAWNPOINTS         ((SpawnPoint*)(*(u32*)0x0023D020))
+#define SP_COUNT            (*(int*)0x0023D024)
+#define SP_HILL_PTR         (*(u32*)0x0023CE98)
+#else
+#define SPAWNPOINTS         ((SpawnPoint*)(*(u32*)0x00222820))
+#define SP_COUNT            (*(int*)0x00222824)
+#define SP_HILL_PTR         (*(u32*)0x00222698)
+#endif
+
 /*
  * Player 1's hud.
  */
-#define SPAWNPOINTS		    ((SpawnPoint*)(*(u32*)RAC4_LEVEL_CODE0(0x46A0)))
-
-/*
- *
- */
-#define SP_COUNT    (*(int*)RAC4_LEVEL_CODE0(0x46A4))
-
-/*
- * Player 2's hud.
- */
-#define SP_HILL_PTR	        (*(u32*)RAC4_LEVEL_CODE0(0x4518))
-
 int spawnPointGetCount()
 {
     return SP_COUNT;

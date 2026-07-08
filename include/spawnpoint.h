@@ -30,6 +30,13 @@ typedef struct SpawnPoint
     MATRIX M1;
 } SpawnPoint;
 
+typedef struct Path {
+    /* 0x0 */ int nNodes;
+    /* 0x4 */ int bPathNormalized;
+    /* 0x8 */ char pad[8];
+    /* 0x10 */ VECTOR nodes[0];
+} Path_t;
+
 /*
  * NAME :		spawnPointGetCount
  * 

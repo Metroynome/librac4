@@ -3,16 +3,21 @@
 #include <tamtypes.h>
 #include "types.h"
 
+/* Region-local addresses. */
+#if RAC4_PAL
+#define HUD_P1          ((PlayerHUDFlags*)0x0030D960)
+#define HUD_P2          ((PlayerHUDFlags*)0x0030D970)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define HUD_P1          ((PlayerHUDFlags*)0x003280E0)
+#define HUD_P2          ((PlayerHUDFlags*)0x003280F0)
+#else
+#define HUD_P1          ((PlayerHUDFlags*)0x0030D8E0)
+#define HUD_P2          ((PlayerHUDFlags*)0x0030D8F0)
+#endif
+
 /*
  * Player 1's hud.
  */
-#define HUD_P1			((PlayerHUDFlags*)RAC4_LEVEL_CODE0(0xEF760))
-
-/*
- * Player 2's hud.
- */
-#define HUD_P2			((PlayerHUDFlags*)RAC4_LEVEL_CODE0(0xEF770))
-
 
 PlayerHUDFlags * hudGetPlayerFlags(int localPlayerIndex)
 {

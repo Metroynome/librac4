@@ -139,6 +139,24 @@ typedef struct PadHistory
     short id;
 } PadHistory;
 
+struct pad_frame { // 0x2
+	/* 0x0 */ unsigned char data[2];
+};
+
+typedef struct PadStream { // 0x1e0
+	/* 0x000 */ short unsigned int button_bits[4];
+	/* 0x008 */ short unsigned int analog_stick[4];
+	/* 0x010 */ short unsigned int right_analog_stick[4];
+	/* 0x018:0 */ unsigned char frames_with_btn_diffs : 4;
+	/* 0x019 */ unsigned char btn_bit_diffs[32];
+	/* 0x03c */ int cur_btn_bit_offset;
+	/* 0x040 */ struct pad_frame prev_frame;
+	/* 0x042 */ unsigned char pad_stream_buf[2][200];
+	/* 0x1d4 */ int totalPadStreamBytes;
+	/* 0x1d8 */ int curFrame;
+	/* 0x1dc */ int padStreamReady;
+} PadStream_t;
+
 /*
  * NAME :		padGetButton
  * 

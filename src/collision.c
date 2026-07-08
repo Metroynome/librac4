@@ -1,19 +1,34 @@
 #include "collision.h"
 #include "types.h"
 
-/*
- * 
- */
-#define COLL_SPHERE_HIT_MOBIES_ARRAY                         ((Moby**)RAC4_LEVEL_CODE0(0x26C40))
+/* Region-local addresses. */
+#if RAC4_PAL
+#define COLL_SPHERE_HIT_MOBIES_ARRAY                         ((Moby**)0x00244E40)
+#define COLL_LINE_FIX_HIT_MOBY                               (*(Moby**)0x0023F998)
+#define COLL_LINE_FIX_HIT_POSITION                           ((float*)0x0023F9A0)
+#define COLL_LINE_FIX_HIT_NORMAL                             ((float*)0x0023F9C0)
+#define COLL_LINE_FIX_HIT_COLLISION_ID                       (*(u8*)0x0023F99C)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define COLL_SPHERE_HIT_MOBIES_ARRAY                         ((Moby**)0x0025F5C0)
+#define COLL_LINE_FIX_HIT_MOBY                               (*(Moby**)0x0025A118)
+#define COLL_LINE_FIX_HIT_POSITION                           ((float*)0x0025A120)
+#define COLL_LINE_FIX_HIT_NORMAL                             ((float*)0x0025A140)
+#define COLL_LINE_FIX_HIT_COLLISION_ID                       (*(u8*)0x0025A11C)
+#else
+#define COLL_SPHERE_HIT_MOBIES_ARRAY                         ((Moby**)0x00244DC0)
+#define COLL_LINE_FIX_HIT_MOBY                               (*(Moby**)0x0023F918)
+#define COLL_LINE_FIX_HIT_POSITION                           ((float*)0x0023F920)
+#define COLL_LINE_FIX_HIT_NORMAL                             ((float*)0x0023F940)
+#define COLL_LINE_FIX_HIT_COLLISION_ID                       (*(u8*)0x0023F91C)
+#endif
 
 /*
  * 
  */
-#define COLL_LINE_FIX_HIT_MOBY                               (*(Moby**)RAC4_LEVEL_CODE0(0x21798))
-#define COLL_LINE_FIX_HIT_POSITION                           ((float*)RAC4_LEVEL_CODE0(0x217A0))
-#define COLL_LINE_FIX_HIT_NORMAL                             ((float*)RAC4_LEVEL_CODE0(0x217C0))
-#define COLL_LINE_FIX_HIT_COLLISION_ID                       (*(u8*)RAC4_LEVEL_CODE0(0x2179C))
 
+/*
+ * 
+ */
 
 Moby** CollMobysSphere_Fix_GetHitMobies(void)
 {

@@ -1,11 +1,25 @@
 #include "moby.h"
 #include "types.h"
 
-//--------------------------------------------------------
-#define BEGIN_MOBY_PTR                          ((Moby**)RAC4_LEVEL_CODE0(0x4614))
-#define END_MOBY_PTR                            ((Moby**)RAC4_LEVEL_CODE0(0x4630))
-#define MOBY_CLASS_LOADED_ADDR                  ((u16*)RAC4_LEVEL_CODE0(0x2BCB0))
+/* Region-local addresses. */
+#if RAC4_PAL
+#define BEGIN_MOBY_PTR                          ((Moby**)0x00222814)
+#define END_MOBY_PTR                            ((Moby**)0x00222830)
+#define MOBY_CLASS_LOADED_ADDR                  ((u16*)0x00249EB0)
+#define MOBY_SPAWNABLE_COUNT                    (*(int*)0x00222810)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define BEGIN_MOBY_PTR                          ((Moby**)0x0023CF94)
+#define END_MOBY_PTR                            ((Moby**)0x0023CFB0)
+#define MOBY_CLASS_LOADED_ADDR                  ((u16*)0x00264630)
+#define MOBY_SPAWNABLE_COUNT                    (*(int*)0x0023CF90)
+#else
+#define BEGIN_MOBY_PTR                          ((Moby**)0x00222794)
+#define END_MOBY_PTR                            ((Moby**)0x002227B0)
+#define MOBY_CLASS_LOADED_ADDR                  ((u16*)0x00249E30)
+#define MOBY_SPAWNABLE_COUNT                    (*(int*)0x00222790)
+#endif
 
+//--------------------------------------------------------
 /*
  * Returns pointer to the start of the moby list.
  */
@@ -41,7 +55,7 @@ int mobyIsDestroyed(Moby* moby)
  */
 int mobyGetNumSpawnableMobys(void)
 {
-    return *(int*)RAC4_LEVEL_CODE0(0x4610);
+    return MOBY_SPAWNABLE_COUNT;
 }
 
 /*

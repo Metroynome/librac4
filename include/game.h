@@ -18,6 +18,41 @@
 #include "moby.h"
 #include "gamesettings.h"
 #include "common.h"
+#include "types.h"
+
+/* Region-local addresses. */
+#if RAC4_PAL
+#define Level (*(volatile int*)0x0021DE90)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define Level (*(volatile int*)0x00238610)
+#else
+#define Level (*(volatile int*)0x0021DE10)
+#endif
+
+
+typedef enum {
+    GAME_MODE_NONE = -2,
+    GAME_MODE_DEBUG = -1,
+    GAME_MODE_NORMAL = 0,
+    GAME_MODE_MOVIE = 1,
+    GAME_MODE_SCENE = 2,
+    GAME_MODE_PAUSE = 3,
+    GAME_MODE_FREEZE = 4,
+    GAME_MODE_VENDOR = 5,
+    GAME_MODE_SPACE = 6,
+    GAME_MODE_PUZZLE = 7,
+    GAME_MODE_WEAPON_UPGRADE = 8,
+    GAME_MODE_CREDITS = 9,
+    GAME_MODE_LOBBY = 10,
+    GAME_MODE_FLYBY = 11,
+    GAME_MODE_THERMAL = 12,
+    GAME_MODE_PRE_LOBBY_MEMCARD_LOAD = 13,
+    GAME_MODE_PRE_LOBBY = 14,
+    GAME_MODE_WAIT_FOR_MPSTART = 15,
+    GAME_MODE_EXEC_MP_MEMCARD_COMMAND = 16,
+    GAME_MODE_IOP_DEBUG = 17,
+    GAME_MODE_MAX = 18
+} gameMode_t;
 
 
 //--------------------------------------------------------
@@ -79,15 +114,6 @@ typedef struct LocalPlayerYourBaseGameData
     int pad[8];
 } LocalPlayerYourBaseGameData;
 
-//--------------------------------------------------------
-typedef struct ScoreboardItem
-{
-    int TeamId;
-    int UNK;
-    int Value;
-} ScoreboardItem;
-
-
 /*
  * NAME :		isInGame
  * 
@@ -121,55 +147,6 @@ __LIBRAC4_GETTER__ int isInGame(void);
 __LIBRAC4_GETTER__ int isInMenus(void);
 
 /*
- * NAME :		isSceneLoading
- * 
- * DESCRIPTION :
- * 			Whether the client is currently in a scene transition.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ int isSceneLoading(void);
-
-/*
- * NAME :		gameIsStartMenuOpen
- * 
- * DESCRIPTION :
- * 			Whether the client is in game and has the start menu open.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ int gameIsStartMenuOpen(void);
-
-
-/*
- * NAME :		gameHasEnded
- * 
- * DESCRIPTION :
- * 			Whether the game has ended and/or is ending.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ int gameHasEnded(void);
-
-/*
  * NAME :		gameGetTime
  * 
  * DESCRIPTION :
@@ -184,88 +161,5 @@ __LIBRAC4_GETTER__ int gameHasEnded(void);
  * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
  */
 __LIBRAC4_GETTER__ int gameGetTime(void);
-
-/*
- * NAME :		gameGetFinishedExitTime
- * 
- * DESCRIPTION :
- * 			Gets the time when to leave after the game has ended.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- *          Returns 0 if the game has not ended.
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ int gameGetFinishedExitTime(void);
-
-/*
- * NAME :		gameGetDeathHeight
- * 
- * DESCRIPTION :
- * 			Gets the level's death height.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ float gameGetDeathHeight(void);
-
-/*
- * NAME :		gameSetDeathHeight
- * 
- * DESCRIPTION :
- * 			Sets the level's death height.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_SETTER__ void gameSetDeathHeight(float height);
-
-/*
- * NAME :		gameGetRawTimeLimit
- * 
- * DESCRIPTION :
- * 			Gets the actual time limit in milliseconds.
- * 
- * NOTES :
- * 
- * ARGS : 
- * 
- * RETURN :
- * 
- * AUTHOR :			Daniel "Dnawrkshp" Gerendasy
- */
-__LIBRAC4_GETTER__ int gameGetRawTimeLimit(void);
-
-/*
- * NAME :		gameScoreboardSetTeamScore
- * 
- * DESCRIPTION :
- * 			Sets the given team's in game scoreboard value.
- * 
- */
-void gameScoreboardSetTeamScore(int teamId, int score);
-
-/*
- * NAME :		gameGetWorldId
- * 
- * DESCRIPTION :
- * 			Returns the current dme world id. -1 if not in a world.
- * 
- */
-__LIBRAC4_GETTER__ int gameGetWorldId(void);
 
 #endif // _LIBRAC4_GAME_H_

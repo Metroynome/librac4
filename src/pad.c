@@ -5,8 +5,27 @@
 #include "types.h"
 #include "interop.h"
 
-#if defined(RAC4_PAL)
+/* Region-local addresses. */
+#if RAC4_PAL
+#define PAD_POINTER                         ((struct PAD**)0x0021DE4C)
+#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_NO_INPUT_TIMER                  (*(u16*)0x00347EDA)
+#define PAD_NO_CAMERA_TIMER                 (*(u16*)0x00347F22)
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define PAD_POINTER                         ((struct PAD**)0x002385CC)
+#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_NO_INPUT_TIMER                  (*(u16*)0x0036265A)
+#define PAD_NO_CAMERA_TIMER                 (*(u16*)0x003626A2)
+#else
+#define PAD_POINTER                         ((struct PAD**)0x0021DDCC)
+#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_NO_INPUT_TIMER                  (*(u16*)0x00347E5A)
+#define PAD_NO_CAMERA_TIMER                 (*(u16*)0x00347EA2)
+#endif
+
+#if RAC4_PAL
 VariableAddress_t vaPadProcessAddr = {
+    .MainMenu = 0x0061AA30,
     .Battledome = 0x005F1830,
     .Catacrom = 0x005E9BB0,
     .Sarathos = 0x005E8E30,
@@ -19,11 +38,10 @@ VariableAddress_t vaPadProcessAddr = {
     .Maraxus = 0x005EA030,
     .GhostStation = 0x005EA5B0,
     .DreadZoneInterior = 0x005EE7B0,
-    .MainMenu = 0x0061AA30,
-    .MultiplayerMenu = 0x00718E30
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaPadProcessAddr = {
+    .MainMenu = 0x0063EA30,
     .Battledome = 0x0060C330,
     .Catacrom = 0x006045B0,
     .Sarathos = 0x006038B0,
@@ -36,11 +54,10 @@ VariableAddress_t vaPadProcessAddr = {
     .Maraxus = 0x00604B30,
     .GhostStation = 0x00605030,
     .DreadZoneInterior = 0x006092B0,
-    .MainMenu = 0x0063EA30,
-    .MultiplayerMenu = 0x00733530
 };
 #else
 VariableAddress_t vaPadProcessAddr = {
+    .MainMenu = 0x0061AA30,
     .Battledome = 0x005F16B0,
     .Catacrom = 0x005E99B0,
     .Sarathos = 0x005E8C30,
@@ -53,13 +70,12 @@ VariableAddress_t vaPadProcessAddr = {
     .Maraxus = 0x005E9F30,
     .GhostStation = 0x005EA430,
     .DreadZoneInterior = 0x005EE630,
-    .MainMenu = 0x0061AA30,
-    .MultiplayerMenu = 0x00718930
 };
 #endif
 
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaPadProcessFunc = {
+    .MainMenu = 0x0061A868,
     .Battledome = 0x005F1668,
     .Catacrom = 0x005E99E8,
     .Sarathos = 0x005E8C68,
@@ -72,11 +88,10 @@ VariableAddress_t vaPadProcessFunc = {
     .Maraxus = 0x005E9E68,
     .GhostStation = 0x005EA3E8,
     .DreadZoneInterior = 0x005EE5E8,
-    .MainMenu = 0x0061A868,
-    .MultiplayerMenu = 0x00718C68
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaPadProcessFunc = {
+    .MainMenu = 0x0063E868,
     .Battledome = 0x0060C168,
     .Catacrom = 0x006043E8,
     .Sarathos = 0x006036E8,
@@ -89,11 +104,10 @@ VariableAddress_t vaPadProcessFunc = {
     .Maraxus = 0x00604968,
     .GhostStation = 0x00604E68,
     .DreadZoneInterior = 0x006090E8,
-    .MainMenu = 0x0063E868,
-    .MultiplayerMenu = 0x00733368
 };
 #else
 VariableAddress_t vaPadProcessFunc = {
+    .MainMenu = 0x0061A868,
     .Battledome = 0x005F14E8,
     .Catacrom = 0x005E97E8,
     .Sarathos = 0x005E8A68,
@@ -106,13 +120,9 @@ VariableAddress_t vaPadProcessFunc = {
     .Maraxus = 0x005E9D68,
     .GhostStation = 0x005EA268,
     .DreadZoneInterior = 0x005EE468,
-    .MainMenu = 0x0061A868,
-    .MultiplayerMenu = 0x00718768
 };
 #endif
 
-#define PAD_POINTER                         ((struct PAD**)RAC4_ADDR_PAD_POINTER)
-#define PAD_P0                              ((struct PAD*)RAC4_ADDR_PAD_0)
 #define P1_PAD                              ((PadButtonStatus*)((u32)padGetPad(0) + 0x574))
 #define P2_PAD                              ((PadButtonStatus*)((u32)padGetPad(1) + 0x574))
 #define PAD_PROCESS_ADDR                    (*(u32*)GetAddress(&vaPadProcessAddr))
@@ -293,10 +303,10 @@ void padDisableInput(void)
     if (isInGame())
     {
         // no input timer
-        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x3BA) = 0x7FFF;
+        PAD_NO_INPUT_TIMER = 0x7FFF;
 
         // no cam
-        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x402) = 0x7FFF;
+        PAD_NO_CAMERA_TIMER = 0x7FFF;
     }
 }
 
@@ -321,9 +331,9 @@ void padEnableInput(void)
     if (isInGame())
     {
         // no input timer
-        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x3BA) = 0;
+        PAD_NO_INPUT_TIMER = 0;
 
         // no cam
-        *(u16*)(RAC4_LEVEL_CODE0(0x129920) + 0x402) = 0;
+        PAD_NO_CAMERA_TIMER = 0;
     }
 }

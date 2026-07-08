@@ -1,16 +1,24 @@
 #include "map.h"
+#include "game.h"
 #include "interop.h"
 #include "types.h"
 
-#define CURRENT_LEVEL (*(int*)RAC4_ADDR_GAME_MAP_ID)
-#define MISSION_AREA (RAC4_ADDR_MISSION_AREA)
-#define SAVE_FILE_CURRENT_LEVEL (RAC4_ADDR_SAVE_FILE_LEVEL_ID)
-
-MISSIONLOAD * Mission = (MISSIONLOAD*)MISSION_AREA;
+/* Region-local addresses. */
+#if RAC4_PAL
+#define SaveFileLevel (*(int*)0x001719FC)
+MISSIONLOAD * Mission = (MISSIONLOAD*)0x00171228;
+#elif RAC4_NTSCJ || RAC4_NTSCK
+#define SaveFileLevel (*(int*)0x001718FC)
+MISSIONLOAD * Mission = (MISSIONLOAD*)0x00171128;
+#else
+#define SaveFileLevel (*(int*)0x0017197C)
+MISSIONLOAD * Mission = (MISSIONLOAD*)0x001711A8;
+#endif
 
 //--------------------------------------------------------
-#if defined(RAC4_PAL)
+#if RAC4_PAL
 VariableAddress_t vaSwitchToLevelFunc = {
+    .MainMenu = 0,
     .Battledome = 0x0056B370,
     .Catacrom = 0x0051D470,
     .Sarathos = 0x0051D6D8,
@@ -23,11 +31,10 @@ VariableAddress_t vaSwitchToLevelFunc = {
     .Maraxus = 0x0052FAF0,
     .GhostStation = 0x00528908,
     .DreadZoneInterior = 0x0053A3B0,
-    .MainMenu = 0,
-    .MultiplayerMenu = 0
 };
-#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+#elif RAC4_NTSCJ || RAC4_NTSCK
 VariableAddress_t vaSwitchToLevelFunc = {
+    .MainMenu = 0,
     .Battledome = 0x005838C0,
     .Catacrom = 0x00535DE8,
     .Sarathos = 0x00536280,
@@ -40,11 +47,10 @@ VariableAddress_t vaSwitchToLevelFunc = {
     .Maraxus = 0x00548418,
     .GhostStation = 0x00541270,
     .DreadZoneInterior = 0x00552DB0,
-    .MainMenu = 0,
-    .MultiplayerMenu = 0
 };
 #else
 VariableAddress_t vaSwitchToLevelFunc = {
+    .MainMenu = 0,
     .Battledome = 0x005687B0,
     .Catacrom = 0x0051AED8,
     .Sarathos = 0x0051B2B0,
@@ -57,8 +63,6 @@ VariableAddress_t vaSwitchToLevelFunc = {
     .Maraxus = 0x0052D4C8,
     .GhostStation = 0x00526320,
     .DreadZoneInterior = 0x00537CE0,
-    .MainMenu = 0,
-    .MultiplayerMenu = 0
 };
 #endif
 
@@ -110,9 +114,9 @@ int mapMaskToId(int mapMask)
     }
 }
 
-int mapIsActiveLevel(int Level)
+int mapIsActiveLevel(int levelId)
 {
-    return CURRENT_LEVEL == Level;
+    return Level == levelId;
 }
 
 int mapGetActiveMission(void)
@@ -125,8 +129,8 @@ void mapResetMission(void)
     Mission->ResetLevel = 1;
 }
 
-void mapSwitchToLevel(int Level, int Mission)
+void mapSwitchToLevel(int levelId, int missionId)
 {
-    internal_mapSwitchToLevel(Level, 1, Mission);
+    internal_mapSwitchToLevel(levelId, 1, missionId);
 }
 
