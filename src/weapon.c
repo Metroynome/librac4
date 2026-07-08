@@ -1,6 +1,113 @@
 #include <tamtypes.h>
 #include "weapon.h"
+#include "types.h"
 #include "interop.h"
+
+#if defined(RAC4_PAL)
+VariableAddress_t vaOmniDamageV1Patch = {
+    .Battledome = 0x003D6C00,
+    .Catacrom = 0x003CEF80,
+    .Sarathos = 0x003CE200,
+    .Kronos = 0x003D0780,
+    .Shaar = 0x003CDE00,
+    .Valix = 0x003CE200,
+    .Orxon = 0x003CE180,
+    .Torval = 0x003CF500,
+    .Stygia = 0x003CD480,
+    .Maraxus = 0x003CF400,
+    .GhostStation = 0x003CF980,
+    .DreadZoneInterior = 0x003D3B80,
+    .MainMenu = 0x003FFE00,
+    .MultiplayerMenu = 0x004FE200
+};
+#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+VariableAddress_t vaOmniDamageV1Patch = {
+    .Battledome = 0x003F1700,
+    .Catacrom = 0x003E9980,
+    .Sarathos = 0x003E8C80,
+    .Kronos = 0x003EB200,
+    .Shaar = 0x003E8900,
+    .Valix = 0x003E8C80,
+    .Orxon = 0x003E8C00,
+    .Torval = 0x003E9F80,
+    .Stygia = 0x003E7F00,
+    .Maraxus = 0x003E9F00,
+    .GhostStation = 0x003EA400,
+    .DreadZoneInterior = 0x003EE680,
+    .MainMenu = 0x00423E00,
+    .MultiplayerMenu = 0x00518900
+};
+#else
+VariableAddress_t vaOmniDamageV1Patch = {
+    .Battledome = 0x003D6A80,
+    .Catacrom = 0x003CED80,
+    .Sarathos = 0x003CE000,
+    .Kronos = 0x003D0580,
+    .Shaar = 0x003CDD00,
+    .Valix = 0x003CE100,
+    .Orxon = 0x003CE000,
+    .Torval = 0x003CF380,
+    .Stygia = 0x003CD300,
+    .Maraxus = 0x003CF300,
+    .GhostStation = 0x003CF800,
+    .DreadZoneInterior = 0x003D3A00,
+    .MainMenu = 0x003FFE00,
+    .MultiplayerMenu = 0x004FDD00
+};
+#endif
+
+#if defined(RAC4_PAL)
+VariableAddress_t vaOmniDamageV2Patch = {
+    .Battledome = 0x003D6C10,
+    .Catacrom = 0x003CEF90,
+    .Sarathos = 0x003CE210,
+    .Kronos = 0x003D0790,
+    .Shaar = 0x003CDE10,
+    .Valix = 0x003CE210,
+    .Orxon = 0x003CE190,
+    .Torval = 0x003CF510,
+    .Stygia = 0x003CD490,
+    .Maraxus = 0x003CF410,
+    .GhostStation = 0x003CF990,
+    .DreadZoneInterior = 0x003D3B90,
+    .MainMenu = 0x003FFE10,
+    .MultiplayerMenu = 0x004FE210
+};
+#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+VariableAddress_t vaOmniDamageV2Patch = {
+    .Battledome = 0x003F1710,
+    .Catacrom = 0x003E9990,
+    .Sarathos = 0x003E8C90,
+    .Kronos = 0x003EB210,
+    .Shaar = 0x003E8910,
+    .Valix = 0x003E8C90,
+    .Orxon = 0x003E8C10,
+    .Torval = 0x003E9F90,
+    .Stygia = 0x003E7F10,
+    .Maraxus = 0x003E9F10,
+    .GhostStation = 0x003EA410,
+    .DreadZoneInterior = 0x003EE690,
+    .MainMenu = 0x00423E10,
+    .MultiplayerMenu = 0x00518910
+};
+#else
+VariableAddress_t vaOmniDamageV2Patch = {
+    .Battledome = 0x003D6A90,
+    .Catacrom = 0x003CED90,
+    .Sarathos = 0x003CE010,
+    .Kronos = 0x003D0590,
+    .Shaar = 0x003CDD10,
+    .Valix = 0x003CE110,
+    .Orxon = 0x003CE010,
+    .Torval = 0x003CF390,
+    .Stygia = 0x003CD310,
+    .Maraxus = 0x003CF310,
+    .GhostStation = 0x003CF810,
+    .DreadZoneInterior = 0x003D3A10,
+    .MainMenu = 0x003FFE10,
+    .MultiplayerMenu = 0x004FDD10
+};
+#endif
 
 #if defined(RAC4_PAL)
 VariableAddress_t vaWrenchDefsTable = {
@@ -164,8 +271,8 @@ VariableAddress_t vaFlailDefsTable = {
 #define WRENCH_DEFS_TABLE                   ((WrenchDefsData*)GetAddress(&vaWrenchDefsTable))
 #define WEAPON_DEFS_TABLE                   ((WeaponDefsData*)GetAddress(&vaWeaponDefsTable))
 #define FLAIL_DEFS_TABLE                    ((WeaponDefsData*)GetAddress(&vaFlailDefsTable))
-#define OMNI_DAMAGE_V1_PATCH                (0x003FFE00)
-#define OMNI_DAMAGE_V2_PATCH                (0x003FFE10)
+#define OMNI_DAMAGE_V1_PATCH                (GetAddress(&vaOmniDamageV1Patch))
+#define OMNI_DAMAGE_V2_PATCH                (GetAddress(&vaOmniDamageV2Patch))
 
 
 WeaponDefsData* weaponGetGunLevelDefs(void)

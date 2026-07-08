@@ -4,7 +4,7 @@
 #include "types.h"
 
 #define MC_SEMA                         (*(u32*)RAC4_ADDR_MC_SEMA)
-#define MC_RESULT                       (*(s32*)0x001AEE40)
+#define MC_RESULT                       (*(s32*)RAC4_ADDR_MC_RESULT)
 
 //--------------------------------------------------------
 int McPollSema(void)

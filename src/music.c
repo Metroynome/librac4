@@ -130,7 +130,7 @@ void internal_wadGetSectors(u64, u64, u64);
 /*
  * This is what is used to figure out where to load the tracks from.
  */
-#define MUSIC_LOCATION (*(u32*)0x001CF85C)
+#define MUSIC_LOCATION (*(u32*)RAC4_ADDR_MUSIC_LOCATION)
 
 /*
  * Defines which track to start on.
@@ -141,15 +141,6 @@ void internal_wadGetSectors(u64, u64, u64);
  * How many tracks to play, starting at TRACK_RANGE_MIN
  */
 #define TRACK_RANGE_MAX (*(u8*)GetAddress(&vaTrackRangeMax))
-
-#define CURRENT_TRACK (*(u16*)0x00206990)
-
-/*
- * how long the track is.
- * Counts down to 0.  If 0, track is done playing.
- * if 0xBB80, game is loading next track.
- */
-#define TRACK_DURATION (*(u32*)0x002069A4)
 
 //--------------------------------------------------------------------------------
 void musicPlayTrack(int TrackNumber, int KeepPlaying)

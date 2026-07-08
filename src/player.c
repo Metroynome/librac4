@@ -19,7 +19,7 @@ void internal_playerSetPosRot(Player *, VECTOR, VECTOR, int, int, int, int, int)
 /*
  * Local player 2 dme player index.
  */
-#define PLAYER_2_ID                                 (*(u32*)0x001B6ED8)
+#define PLAYER_2_ID                                 (*(u32*)RAC4_ADDR_PLAYER_2_ID)
 
 /*
  *
@@ -29,7 +29,7 @@ void internal_playerSetPosRot(Player *, VECTOR, VECTOR, int, int, int, int, int)
 /*
  * Weapon stuff.
  */
-#define WEAPON_EQUIPSLOT                            ((int*)0x0020C690)
+#define WEAPON_EQUIPSLOT                            ((int*)RAC4_ADDR_WEAPON_EQUIPSLOT)
 
 // 
 extern const PadHistory DefaultPadHistory;

@@ -2,6 +2,7 @@
 #include "interop.h"
 #include "utils.h"
 #include "game.h"
+#include "types.h"
 
 
 #if defined(RAC4_PAL)
@@ -47,7 +48,7 @@ VariableAddress_t vaDrawTextFunc = {
 
 int gfxGetAddressByOffset(int Offset)
 {
-	int player = *(u32*)0x001eeb70;
+	int player = *(u32*)RAC4_ADDR_HERO_STRUCT_PTR;
 	int hudptr = *(u32*)(player - 0x67b4);
 	int ptr = *(u32*)(hudptr + 0x28);
 	int ptr1 = *(u32*)(ptr + 0x80);

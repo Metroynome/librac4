@@ -4,7 +4,7 @@
 #include "types.h"
 
 #define UI_ACTIVE_ID                            (*(int*)RAC4_LEVEL_CODE0(0x125338))
-#define UI_DIALOG_A0                            ((void*)0x011C7000)
+#define UI_DIALOG_A0                            ((void*)RAC4_ADDR_UI_DIALOG_A0)
 
 int internal_uiDialog(void *, const char *, const char *, int, int, int, int);
 int internal_uiSelectDialog(void *, const char *, const char **, int, int, int, int);
@@ -12,7 +12,7 @@ int internal_uiInputDialog(void *, const char *, char *, int, int, int, int, int
 
 int uiGetAddressByOffset(int Offset)
 {
-    int HeroStruct = *(u32*)0x001eeb70;
+    int HeroStruct = *(u32*)RAC4_ADDR_HERO_STRUCT_PTR;
     if (HeroStruct == 0)
         return;
 

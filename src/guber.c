@@ -1,4 +1,5 @@
 #include "guber.h"
+#include "types.h"
 #include "interop.h"
 
 #if defined(RAC4_PAL)

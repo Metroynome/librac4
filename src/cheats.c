@@ -7,6 +7,59 @@
 #include "interop.h"
 
 #if defined(RAC4_PAL)
+VariableAddress_t vaCheatUpdateFunc = {
+    .Battledome = 0x00480F78,
+    .Catacrom = 0x004792F8,
+    .Sarathos = 0x00478578,
+    .Kronos = 0x0047AAF8,
+    .Shaar = 0x00478178,
+    .Valix = 0x00478578,
+    .Orxon = 0x004784F8,
+    .Torval = 0x00479878,
+    .Stygia = 0x004777F8,
+    .Maraxus = 0x00479778,
+    .GhostStation = 0x00479CF8,
+    .DreadZoneInterior = 0x0047DEF8,
+    .MainMenu = 0x004AA178,
+    .MultiplayerMenu = 0x005A8578
+};
+#elif defined(RAC4_NTSCJ) || defined(RAC4_NTSCK)
+VariableAddress_t vaCheatUpdateFunc = {
+    .Battledome = 0x0049BA78,
+    .Catacrom = 0x00493CF8,
+    .Sarathos = 0x00492FF8,
+    .Kronos = 0x00495578,
+    .Shaar = 0x00492C78,
+    .Valix = 0x00492FF8,
+    .Orxon = 0x00492F78,
+    .Torval = 0x004942F8,
+    .Stygia = 0x00492278,
+    .Maraxus = 0x00494278,
+    .GhostStation = 0x00494778,
+    .DreadZoneInterior = 0x004989F8,
+    .MainMenu = 0x004CE178,
+    .MultiplayerMenu = 0x005C2C78
+};
+#else
+VariableAddress_t vaCheatUpdateFunc = {
+    .Battledome = 0x00480DF8,
+    .Catacrom = 0x004790F8,
+    .Sarathos = 0x00478378,
+    .Kronos = 0x0047A8F8,
+    .Shaar = 0x00478078,
+    .Valix = 0x00478478,
+    .Orxon = 0x00478378,
+    .Torval = 0x004796F8,
+    .Stygia = 0x00477678,
+    .Maraxus = 0x00479678,
+    .GhostStation = 0x00479B78,
+    .DreadZoneInterior = 0x0047DD78,
+    .MainMenu = 0x004AA178,
+    .MultiplayerMenu = 0x005A8078
+};
+#endif
+
+#if defined(RAC4_PAL)
 VariableAddress_t vaWeatherModeReal = {
     .Battledome = 0x0022035C,
     .Catacrom = 0x0022035C,
@@ -87,7 +140,7 @@ VariableAddress_t vaWeatherModeReal = {
   This Needs Updating to Single Player
     - Troy
 */
-#define CHEAT_UPDATE_FUNC                           ((void(*)(int))0x004AA178)
+#define CHEAT_UPDATE_FUNC                           ((void(*)(int))GetAddress(&vaCheatUpdateFunc))
 
 #define CHEAT_WEATHER_MODE_REAL                     (*(int*)GetAddress(&vaWeatherModeReal))
 

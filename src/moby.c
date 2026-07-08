@@ -2,11 +2,8 @@
 #include "types.h"
 
 //--------------------------------------------------------
-#define SPAWN_MOBY_FUNC                         (0x004F7200)
 #define BEGIN_MOBY_PTR                          ((Moby**)RAC4_LEVEL_CODE0(0x4614))
 #define END_MOBY_PTR                            ((Moby**)RAC4_LEVEL_CODE0(0x4630))
-#define MOBY_UPDATE_FUNC                        (0x004FE720)
-#define MOBY_DESTROY_FUNC                       (0x004F76A0)
 #define MOBY_CLASS_LOADED_ADDR                  ((u16*)RAC4_LEVEL_CODE0(0x2BCB0))
 
 /*
