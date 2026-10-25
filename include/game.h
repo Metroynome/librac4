@@ -22,11 +22,11 @@
 
 /* Region-local addresses. */
 #if RAC4_PAL
-#define Level (*(volatile int*)0x0021DE90)
+#define Level (*(volatile int*)0x0021de98)
 #elif RAC4_NTSCJ || RAC4_NTSCK
-#define Level (*(volatile int*)0x00238610)
+#define Level (*(volatile int*)0x00238618)
 #else
-#define Level (*(volatile int*)0x0021DE10)
+#define Level (*(volatile int*)0x0021de10)
 #endif
 
 

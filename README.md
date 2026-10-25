@@ -5,6 +5,13 @@ libdl: https://github.com/Dnawrkshp/libdl
 
 Small C library for developing integrated programs for Ratchet and Clank 4 campaign/cooperative PS2
 
+Campaign graphics helpers (`gfxScreenSpaceText`, `gfxGetFontWidth` and
+`gfxScreenSpaceBox`) resolve through `VariableAddress_t` tables for NTSC-U,
+PAL, NTSC-J and NTSC-K, including the boot menu and co-op planets. Boxes use
+normalized screen coordinates; text positions and widths use 512 by 416 units.
+Call these helpers only after the corresponding overlay and renderer are ready,
+while the current VU chain is being built, before `VU1_sendChain` submits it.
+
 ## Building
 
 Building librac4 requires an installation of the open source PS2SDK. I recommend using a prebuilt docker image.

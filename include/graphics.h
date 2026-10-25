@@ -12,12 +12,20 @@
 
 #include <tamtypes.h>
 #include "math3d.h"
+#include "interop.h"
 
 
 //--------------------------------------------------------
 #define SCREEN_WIDTH           (512)
 #define SCREEN_HEIGHT          (416)
 
+/* Resolved through VariableAddress_t for campaign, co-op and the boot menu. */
+extern VariableAddress_t vaDrawTextFunc;
+extern VariableAddress_t vaGetTextWidthFunc;
+extern VariableAddress_t vaDrawBoxFunc;
+
+void gfxScreenSpaceBox(float x, float y, float width, float height, u32 color);
+int gfxGetFontWidth(const char* text, int length, float scale);
 int gfxScreenSpaceText(float x, float y, float scaleX, float scaleY, u32 color, const char * string, int length, int alignment);
 int internal_drawFunc_MainMenu(u32 color, const char * string, int length, int alignment, float x, float y, float scaleX, float scaleY);
 int internal_widthFunc_MainMenu(const char * string, int length, float scale);

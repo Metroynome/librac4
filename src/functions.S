@@ -1,10 +1,10 @@
 
 /* Region-local addresses. */
 #if RAC4_PAL
-#define Level                               (0x0021DE90)
+#define Level                               (0x0021de98)
 #define Mission                             (0x00171228)
 #elif RAC4_NTSCJ || RAC4_NTSCK
-#define Level                               (0x00238610)
+#define Level                               (0x00238618)
 #define Mission                             (0x00171128)
 #else
 #define Level                               (0x0021DE10)
@@ -138,7 +138,8 @@ __ResolveVariableAddress:
 
 __ResolveVariableAddress_ByMission:
 	lw $v1, Mission;
-	blez $v1, __ResolveVariableAddress_ByMenu;
+	// Mission zero is valid; -1 denotes the front end on Battledome.
+	bltz $v1, __ResolveVariableAddress_ByMenu;
 	nop;
 	beq $zero, $zero, __ResolveVariableAddress_ByMap;
 	nop;

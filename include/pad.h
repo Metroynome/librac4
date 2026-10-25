@@ -263,4 +263,7 @@ void padDisableInput(void);
  */
 void padEnableInput(void);
 
+/* Current local controller, including the boot-menu player-one fallback. */
+struct PAD* padGetPad(int localPlayerIdx);
+
 #endif // _LIBRAC4_PAD_H

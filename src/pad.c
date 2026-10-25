@@ -7,18 +7,18 @@
 
 /* Region-local addresses. */
 #if RAC4_PAL
-#define PAD_POINTER                         ((struct PAD**)0x0021DE4C)
-#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_POINTER                         ((struct PAD**)0x0021de54)
+#define PAD_P0                              ((struct PAD*)0x001ee680)
 #define PAD_NO_INPUT_TIMER                  (*(u16*)0x00347EDA)
 #define PAD_NO_CAMERA_TIMER                 (*(u16*)0x00347F22)
 #elif RAC4_NTSCJ || RAC4_NTSCK
-#define PAD_POINTER                         ((struct PAD**)0x002385CC)
-#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_POINTER                         ((struct PAD**)0x002385d4)
+#define PAD_P0                              ((struct PAD*)0x00208e40)
 #define PAD_NO_INPUT_TIMER                  (*(u16*)0x0036265A)
 #define PAD_NO_CAMERA_TIMER                 (*(u16*)0x003626A2)
 #else
 #define PAD_POINTER                         ((struct PAD**)0x0021DDCC)
-#define PAD_P0                              ((struct PAD*)0x001EE600)
+#define PAD_P0                              ((struct PAD*)0x001ee600)
 #define PAD_NO_INPUT_TIMER                  (*(u16*)0x00347E5A)
 #define PAD_NO_CAMERA_TIMER                 (*(u16*)0x00347EA2)
 #endif
