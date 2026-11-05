@@ -72,7 +72,7 @@ __LocalGetAddress_offsets:
 // 
 	.set	push;
 	.set	noreorder;
-	.section	.text.##__LocalGetAddress,"ax",@progbits;
+	.section	.text.__LocalGetAddress,"ax",@progbits;
 	.align 2;
 	.globl	__LocalGetAddress;
 	.type	__LocalGetAddress,@function;
@@ -88,7 +88,7 @@ __LocalGetAddress:
 // 
 	.set	push;
 	.set	noreorder;
-	.section	.text.##GetAddress,"ax",@progbits;
+	.section	.text.GetAddress,"ax",@progbits;
 	.align 2;
 	.globl	GetAddress;
 	.type	GetAddress,@function;
@@ -104,7 +104,7 @@ GetAddress:
 // 
 	.set	push;
 	.set	noreorder;
-	.section	.text.##GetAddressImmediate,"ax",@progbits;
+	.section	.text.GetAddressImmediate,"ax",@progbits;
 	.align 2;
 	.globl	GetAddressImmediate;
 	.type	GetAddressImmediate,@function;
@@ -120,7 +120,7 @@ GetAddressImmediate:
 // 
 	.set	push;
 	.set	noreorder;
-	.section	.text.##__ResolveVariableAddress,"ax",@progbits;
+	.section	.text.__ResolveVariableAddress,"ax",@progbits;
 	.align 2;
 	.globl	__ResolveVariableAddress;
 	.type	__ResolveVariableAddress,@function;
@@ -171,8 +171,35 @@ __ResolveVariableAddress_MapNormalized:
 	nop;
 
 __ResolveVariableAddress_AddByte:
-	addu $a0, $a0, $v1;
+	srl $v1, $v1, 2;
+	// v1 is the full-table slot index, including MainMenu at zero.
 	lw $v0, 0($a0);
+	bltz $v0, __ResolveVariableAddress_compact;
+	nop;
+	sll $v1, $v1, 2;
+	addu $v1, $a0, $v1;
+	b __ResolveVariableAddress_exit;
+	lw $v0, 0($v1);
+__ResolveVariableAddress_compact:
+	sll $v0, $v0, 1;
+	beqz $v1, __ResolveVariableAddress_exit;
+	srl $v0, $v0, 1;
+	addiu $v1, $v1, -1;
+	beqz $v1, __ResolveVariableAddress_exit;
+	lw $v0, 4($a0);
+	sll $v1, $v1, 1;
+	addu $v1, $a0, $v1;
+	lhu $v1, 6($v1);
+	bnez $v1, __ResolveVariableAddress_offset;
+	nop;
+	b __ResolveVariableAddress_exit;
+	move $v0, $zero;
+__ResolveVariableAddress_offset:
+	xori $v1, $v1, 0x8000;
+	sll $v1, $v1, 16;
+	sra $v1, $v1, 14;
+	addu $v0, $v0, $v1;
+__ResolveVariableAddress_exit:
 	jr $t9;
 	nop;
 
