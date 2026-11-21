@@ -14,6 +14,7 @@
 #ifndef _LIBRAC4_GAME_H_
 #define _LIBRAC4_GAME_H_
 
+#include "interop.h"
 #include <tamtypes.h>
 #include "moby.h"
 #include "gamesettings.h"
@@ -114,6 +115,7 @@ typedef struct LocalPlayerYourBaseGameData
     int pad[8];
 } LocalPlayerYourBaseGameData;
 
+extern VariableAddress_t vaCoopGameMode;
 /*
  * NAME :		isInGame
  * 

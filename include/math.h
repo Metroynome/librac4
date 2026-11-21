@@ -24,6 +24,9 @@
 #define MATH_RAD2DEG                    ((float)180 / MATH_PI)
 #define MATH_DEG2RAD                    (MATH_PI / (float)180)
 
+/* Resident native random stream; restore after temporarily seeding a call. */
+extern volatile u32* mathRandomSeed;
+
 //--------------------------------------------------------
 __LIBRAC4_INLINE__ float cosf(float theta);
 __LIBRAC4_INLINE__ float sinf(float theta);

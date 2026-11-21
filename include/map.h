@@ -13,6 +13,8 @@
 #ifndef _LIBRAC4_MAP_H_
 #define _LIBRAC4_MAP_H_
 
+#include "interop.h"
+
 #include <tamtypes.h>
 
 /*
@@ -124,6 +126,8 @@ int mapGetActiveMission(void);
  * AUTHOR: Troy "Agent Moose" Pruitt
  */
 void mapResetMission(void);
+extern VariableAddress_t vaSwitchToLevelFunc;
+
 /*
  * NAME:		mapSwitchToLevel
  * DESCRIPTION:

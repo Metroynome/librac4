@@ -14,6 +14,8 @@
 #ifndef _LIBRAC4_MOBY_H_
 #define _LIBRAC4_MOBY_H_
 
+#include "interop.h"
+
 #include <tamtypes.h>
 #include "math3d.h"
 #include "common.h"
@@ -810,6 +812,11 @@ typedef struct MobyFunctions
     void * FUNC_1C;
 
 } MobyFunctions;
+
+/* Cooperative overlay address tables. Resolve only in levels 21-35. */
+extern VariableAddress_t vaCoopMobySnapAnimation;
+extern VariableAddress_t vaCoopMobyListStart;
+extern VariableAddress_t vaCoopMobyListEnd;
 
 /*
  * Spawns a moby with the given id and properties size.

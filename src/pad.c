@@ -5,6 +5,65 @@
 #include "types.h"
 #include "interop.h"
 
+/* Native Cooperative overlays (levels 21-35), not campaign or libdl multiplayer.
+ * Mapped against the retail 1.00 code images in rac-defs.json. */
+VariableAddress_t vaCoopPadRead = {
+#if RAC4_PAL
+	.Battledome = 0x6bb298,
+	.Catacrom = 0x66abd8,
+	.Sarathos = 0x66aaa0,
+	.Kronos = 0x691470,
+	.Shaar = 0x662de8,
+	.Valix = 0x655b10,
+	.Orxon = 0x66db00,
+	.Torval = 0x6783f8,
+	.Stygia = 0x6653d8,
+	.Maraxus = 0x67eca0,
+	.GhostStation = 0x6788f0,
+	.DreadZoneInterior = 0x688f08
+#elif RAC4_NTSCJ
+	.Battledome = 0x6d17b0,
+	.Catacrom = 0x681570,
+	.Sarathos = 0x681678,
+	.Kronos = 0x6a7e48,
+	.Shaar = 0x679c40,
+	.Valix = 0x66c7e8,
+	.Orxon = 0x6844d8,
+	.Torval = 0x68ee10,
+	.Stygia = 0x67c0b0,
+	.Maraxus = 0x6955f8,
+	.GhostStation = 0x68f288,
+	.DreadZoneInterior = 0x69f920
+#elif RAC4_NTSCK
+	.Battledome = 0x6d17b0,
+	.Catacrom = 0x681570,
+	.Sarathos = 0x681678,
+	.Kronos = 0x6a7e48,
+	.Shaar = 0x679c40,
+	.Valix = 0x66c7e8,
+	.Orxon = 0x6844d8,
+	.Torval = 0x68ee10,
+	.Stygia = 0x67c0b0,
+	.Maraxus = 0x6955f8,
+	.GhostStation = 0x68f288,
+	.DreadZoneInterior = 0x69f920
+#else
+	.Battledome = 0x6b5cb8,
+	.Catacrom = 0x665c38,
+	.Sarathos = 0x665c80,
+	.Kronos = 0x68c450,
+	.Shaar = 0x65e2c8,
+	.Valix = 0x6512b0,
+	.Orxon = 0x668ba0,
+	.Torval = 0x6734d8,
+	.Stygia = 0x660738,
+	.Maraxus = 0x679c80,
+	.GhostStation = 0x673950,
+	.DreadZoneInterior = 0x683e28
+#endif
+};
+
+
 /* Region-local addresses. */
 #if RAC4_PAL
 #define PAD_POINTER                         ((struct PAD**)0x0021de54)

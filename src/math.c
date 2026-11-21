@@ -1,6 +1,14 @@
 #include "math.h"
 #include "game.h"
 
+#if RAC4_PAL
+volatile u32* mathRandomSeed = (volatile u32*)0x21dd00;
+#elif RAC4_NTSCJ || RAC4_NTSCK
+volatile u32* mathRandomSeed = (volatile u32*)0x238480;
+#else
+volatile u32* mathRandomSeed = (volatile u32*)0x21dc80;
+#endif
+
 //--------------------------------------------------------
 
 float internal_fastmodf_inLobby(float x, float y);

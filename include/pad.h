@@ -24,6 +24,8 @@
 #ifndef _LIBRAC4_PAD_H
 #define _LIBRAC4_PAD_H
 
+#include "interop.h"
+
 #include <tamtypes.h>
 #include "common.h"
 
@@ -156,6 +158,9 @@ typedef struct PadStream { // 0x1e0
 	/* 0x1d8 */ int curFrame;
 	/* 0x1dc */ int padStreamReady;
 } PadStream_t;
+
+/* Cooperative overlay address tables. Resolve only in levels 21-35. */
+extern VariableAddress_t vaCoopPadRead;
 
 /*
  * NAME :		padGetButton

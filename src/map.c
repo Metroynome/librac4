@@ -16,55 +16,51 @@ MISSIONLOAD * Mission = (MISSIONLOAD*)0x001711A8;
 #endif
 
 //--------------------------------------------------------
+VariableAddress_t vaSwitchToLevelFunc = {
 #if RAC4_PAL
-VariableAddress_t vaSwitchToLevelFunc = {
-    .MainMenu = 0,
-    .Battledome = 0x0056B370,
-    .Catacrom = 0x0051D470,
-    .Sarathos = 0x0051D6D8,
-    .Kronos = 0x00541D18,
-    .Shaar = 0x00515048,
-    .Valix = 0x005067C0,
-    .Orxon = 0x0051E6D0,
-    .Torval = 0x00529448,
-    .Stygia = 0x00516230,
-    .Maraxus = 0x0052FAF0,
-    .GhostStation = 0x00528908,
-    .DreadZoneInterior = 0x0053A3B0,
-};
+	.MainMenu = 0,
+	.Battledome = 0x0056b370,
+	.Catacrom = 0x0051d470,
+	.Sarathos = 0x0051d6d8,
+	.Kronos = 0x00541d18,
+	.Shaar = 0x00515048,
+	.Valix = 0x005067c0,
+	.Orxon = 0x0051e6d0,
+	.Torval = 0x00529448,
+	.Stygia = 0x00516230,
+	.Maraxus = 0x0052faf0,
+	.GhostStation = 0x00528908,
+	.DreadZoneInterior = 0x0053a3b0,
 #elif RAC4_NTSCJ || RAC4_NTSCK
-VariableAddress_t vaSwitchToLevelFunc = {
-    .MainMenu = 0,
-    .Battledome = 0x005838C0,
-    .Catacrom = 0x00535DE8,
-    .Sarathos = 0x00536280,
-    .Kronos = 0x0055A700,
-    .Shaar = 0x0052DE70,
-    .Valix = 0x0051F468,
-    .Orxon = 0x00537078,
-    .Torval = 0x00541E30,
-    .Stygia = 0x0052EED8,
-    .Maraxus = 0x00548418,
-    .GhostStation = 0x00541270,
-    .DreadZoneInterior = 0x00552DB0,
-};
+	.MainMenu = 0,
+	.Battledome = 0x005838c0,
+	.Catacrom = 0x00535de8,
+	.Sarathos = 0x00536280,
+	.Kronos = 0x0055a700,
+	.Shaar = 0x0052de70,
+	.Valix = 0x0051f468,
+	.Orxon = 0x00537078,
+	.Torval = 0x00541e30,
+	.Stygia = 0x0052eed8,
+	.Maraxus = 0x00548418,
+	.GhostStation = 0x00541270,
+	.DreadZoneInterior = 0x00552db0,
 #else
-VariableAddress_t vaSwitchToLevelFunc = {
-    .MainMenu = 0,
-    .Battledome = 0x005687B0,
-    .Catacrom = 0x0051AED8,
-    .Sarathos = 0x0051B2B0,
-    .Kronos = 0x0053F6F0,
-    .Shaar = 0x00512F20,
-    .Valix = 0x00504918,
-    .Orxon = 0x0051C128,
-    .Torval = 0x00526F20,
-    .Stygia = 0x00513F88,
-    .Maraxus = 0x0052D4C8,
-    .GhostStation = 0x00526320,
-    .DreadZoneInterior = 0x00537CE0,
-};
+	.MainMenu = 0,
+	.Battledome = 0x005687b0,
+	.Catacrom = 0x0051aed8,
+	.Sarathos = 0x0051b2b0,
+	.Kronos = 0x0053f6f0,
+	.Shaar = 0x00512f20,
+	.Valix = 0x00504918,
+	.Orxon = 0x0051c128,
+	.Torval = 0x00526f20,
+	.Stygia = 0x00513f88,
+	.Maraxus = 0x0052d4c8,
+	.GhostStation = 0x00526320,
+	.DreadZoneInterior = 0x00537ce0,
 #endif
+};
 
 //--------------------------------------------------------
 int mapMaskHasMask(int value, int maskValue)

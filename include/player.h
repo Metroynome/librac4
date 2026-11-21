@@ -14,6 +14,8 @@
 #ifndef _LIBRAC4_PLAYER_H_
 #define _LIBRAC4_PLAYER_H_
 
+#include "interop.h"
+
 #include "math.h"
 #include "weapon.h"
 #include "moby.h"
@@ -1438,6 +1440,15 @@ typedef struct PlayerVTable {
 	GetSlot_Func GetSlot; // uses returns player->LocalHero.slot
 } PlayerVTable;
 
+
+/* Cooperative overlay address tables. Resolve only in levels 21-35. */
+extern VariableAddress_t vaCoopHeroSave;
+extern VariableAddress_t vaCoopPlayerBestSpawn;
+extern VariableAddress_t vaCoopPlayerCheckSpawn;
+extern VariableAddress_t vaCoopPlayerWarp;
+extern VariableAddress_t vaCoopPlayers;
+extern VariableAddress_t vaCoopPlayerLookup;
+extern VariableAddress_t vaCoopPlayerInitBodyState;
 
 /*
  * NAME :    playerGetAll
