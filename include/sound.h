@@ -155,4 +155,14 @@ short soundKillById(short soundId, Moby* moby);
  */
 SoundData* soundGetData(short soundId);
 
+/*
+ * NAME : soundPlayMenu
+ * DESCRIPTION : Play a native GUI sound.
+ * NOTES : Boot, campaign and co-op; skips unloaded or changed code.
+ * ARGS : Native GUI sound ID (5 select, 11 open, 12 close, 16 move).
+ * RETURN :
+ * AUTHOR : Troy "Metroynome" Pruitt
+ */
+void soundPlayMenu(int sound);
+
 #endif // _LIBRAC4_SOUND_H_
