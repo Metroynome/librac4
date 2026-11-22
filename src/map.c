@@ -18,7 +18,7 @@ MISSIONLOAD * Mission = (MISSIONLOAD*)0x001711A8;
 //--------------------------------------------------------
 VariableAddress_t vaSwitchToLevelFunc = {
 #if RAC4_PAL
-	.MainMenu = 0,
+	.MainMenu = 0x0045d258,
 	.Battledome = 0x0056b370,
 	.Catacrom = 0x0051d470,
 	.Sarathos = 0x0051d6d8,
@@ -32,7 +32,7 @@ VariableAddress_t vaSwitchToLevelFunc = {
 	.GhostStation = 0x00528908,
 	.DreadZoneInterior = 0x0053a3b0,
 #elif RAC4_NTSCJ || RAC4_NTSCK
-	.MainMenu = 0,
+	.MainMenu = 0x00480988,
 	.Battledome = 0x005838c0,
 	.Catacrom = 0x00535de8,
 	.Sarathos = 0x00536280,
@@ -46,7 +46,7 @@ VariableAddress_t vaSwitchToLevelFunc = {
 	.GhostStation = 0x00541270,
 	.DreadZoneInterior = 0x00552db0,
 #else
-	.MainMenu = 0,
+	.MainMenu = 0x0045ca60,
 	.Battledome = 0x005687b0,
 	.Catacrom = 0x0051aed8,
 	.Sarathos = 0x0051b2b0,

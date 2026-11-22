@@ -14,6 +14,16 @@
 #include "common.h"
 #include "moby.h"
 
+/* Native multiplayer profile keyboard sounds, after UI-event translation.
+ * IDs match NTSC-U, PAL, NTSC-J and NTSC-K; pass to soundPlayMenu. */
+typedef enum soundKeyboard {
+	SOUND_KEYBOARD_OPEN = 0x07,
+	SOUND_KEYBOARD_CLOSE = 0x08,
+	SOUND_KEYBOARD_MOVE = 0x15,
+	SOUND_KEYBOARD_INSERT = 0x16,
+	SOUND_KEYBOARD_DELETE = 0x1a
+} soundKeyboard_e;
+
 /*
  * NAME :		SoundDef
  * 
