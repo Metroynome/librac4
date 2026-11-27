@@ -3,6 +3,51 @@
 #include "interop.h"
 #include "types.h"
 
+/* Native relative mission selection, distinct from Mission->ActiveMission's data link. */
+VariableAddress_t vaTravelMissionIndex = {
+#if RAC4_PAL
+	.Battledome = 0x0021ec58,
+	.Catacrom = 0x0021eb18,
+	.Sarathos = 0x0021ead8,
+	.Kronos = 0x0021ead8,
+	.Shaar = 0x0021ead8,
+	.Valix = 0x0021ead8,
+	.Orxon = 0x0021ead8,
+	.Torval = 0x0021ead8,
+	.Stygia = 0x0021ead8,
+	.Maraxus = 0x0021ead8,
+	.GhostStation = 0x0021ead8,
+	.DreadZoneInterior = 0x0021eb18
+#elif RAC4_NTSCJ || RAC4_NTSCK
+	.Battledome = 0x00239358,
+	.Catacrom = 0x00239218,
+	.Sarathos = 0x002391d8,
+	.Kronos = 0x002391d8,
+	.Shaar = 0x002391d8,
+	.Valix = 0x002391d8,
+	.Orxon = 0x002391d8,
+	.Torval = 0x002391d8,
+	.Stygia = 0x002391d8,
+	.Maraxus = 0x002391d8,
+	.GhostStation = 0x002391d8,
+	.DreadZoneInterior = 0x00239218
+#else
+	.Battledome = 0x0021ebd8,
+	.Catacrom = 0x0021ea98,
+	.Sarathos = 0x0021ea58,
+	.Kronos = 0x0021ea58,
+	.Shaar = 0x0021ea58,
+	.Valix = 0x0021ea58,
+	.Orxon = 0x0021ea58,
+	.Torval = 0x0021ea58,
+	.Stygia = 0x0021ea58,
+	.Maraxus = 0x0021ea58,
+	.GhostStation = 0x0021ea58,
+	.DreadZoneInterior = 0x0021ea98
+#endif
+};
+
+
 /* Region-local addresses. */
 #if RAC4_PAL
 #define SaveFileLevel (*(int*)0x001719FC)

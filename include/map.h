@@ -126,6 +126,8 @@ int mapGetActiveMission(void);
  * AUTHOR: Troy "Agent Moose" Pruitt
  */
 void mapResetMission(void);
+/* Native relative mission index, distinct from Mission->ActiveMission. */
+extern VariableAddress_t vaTravelMissionIndex;
 extern VariableAddress_t vaSwitchToLevelFunc;
 
 /*
